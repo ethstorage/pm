@@ -7,7 +7,8 @@
 ## ZK Fraud Proof
 
 - [ ] Study and summary of other ZK fraud proof proposals in https://github.com/ethereum-optimism/ecosystem-contributions/issues/61
-- [ ] op-program compilation with WASM target
+- [ ] op-program compilation with WASM target (yanlong / po)
+  - [x] [fastcache](https://github.com/ethstorage/fastcache) 
 - [ ] Golang host communication in WASM (WASI)
   - [ ] https://github.com/wasmerio/wasmer-go/tree/master#how-to-run-go-programs-compiled-to-webassembly-modules-with-wasmer-go
   - [ ] https://github.com/wasmerio/wasmer-go/blob/master/examples/example_exports_function_test.go
@@ -16,5 +17,5 @@
 - [ ] External oracle support in WASM (with WASI?)
 - [ ] WASM emulator used in Arb (yanlong)
 - [ ] Find a WASM emulator to replay block transition
-- [ ] zkWASM training (Qi)
+- [x] zkWASM training (Qi)
       
