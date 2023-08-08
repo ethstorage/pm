@@ -49,3 +49,9 @@ make cannon
 # Also see `./bin/cannon run --help` for more options
 
 ```
+
+# Arb reference
+- [replay code](https://github.com/OffchainLabs/nitro/blob/master/cmd/replay/main.go)
+- Build: 
+    1. follow [arbitrum build nitro tutorial](https://docs.arbitrum.io/node-running/how-tos/build-nitro-locally to install requirements
+    2. `make build-wasm-bin`
