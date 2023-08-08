@@ -9,7 +9,7 @@
 - [ ] Study and summary of other ZK fraud proof proposals in https://github.com/ethereum-optimism/ecosystem-contributions/issues/61
 - [ ] Golang host communication in WASM
 - [ ] External oracle support in WASM
-- [ ] WASM emulator used in Arb (yanglong)
+- [ ] WASM emulator used in Arb (yanlong)
 - [ ] Find a WASM emulator to replay block transition
 - [ ] zkWASM training (Qi)
       
