@@ -50,8 +50,19 @@ make cannon
 
 ```
 
+## problems with op-wasm
+-  `/op-program/host`:
+- `/op-node/chaincfg`:
+- `/op-node/eth`:
+- `/beacon/engine`: hard, arbitrum create their own implementation `arbos`
+- `go-ethereum/trie`: use arb's go-etherum, `replace github.com/ethereum/go-ethereum => ./go-ethereum`, [related pr](https://github.com/OffchainLabs/go-ethereum/pull/205)
+- `VictoriaMetrics/fastcache`: use [arb's fastcache](https://github.com/OffchainLabs/fastcache) `replace github.com/VictoriaMetrics/fastcache => ./fastcache`
+
 # Arb reference
 - [replay code](https://github.com/OffchainLabs/nitro/blob/master/cmd/replay/main.go)
 - Build: 
-    1. follow [arbitrum build nitro tutorial](https://docs.arbitrum.io/node-running/how-tos/build-nitro-locally to install requirements
+    1. follow [arbitrum build nitro tutorial](https://docs.arbitrum.io/node-running/how-tos/build-nitro-locally) to install requirements
     2. `make build-wasm-bin`
+- Goetherum related commit:
+    - [First commit](https://github.com/OffchainLabs/go-ethereum/commits?after=1319d385dc35f0a3be7166ec4a63ce83de89c376+244&author=PlasmaPower)
+    - [Another offchainlabs](https://github.com/OffchainLabs/go-ethereum/commits?author=Tristan-Wilson&before=1319d385dc35f0a3be7166ec4a63ce83de89c376+70)
