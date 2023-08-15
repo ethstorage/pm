@@ -7,19 +7,19 @@
 ## ZK Fraud Proof
 
 - [ ] Study and summary of other x fraud-proof proposals in https:/github.com/ethereun-optinsn/ecesysten-contrbutions/1ssues/61
-- [ ] mini-program (like Fib] with host func to input and verified on ZkWASM
-- [ ] External Oracle support in WASM (with WA5I?]
+- [ ] mini-program (like Fib) with host func to input and verified on ZkWASM
+- [ ] External Oracle support in WASM (with WASI?)
 - [ ] Explore tiny-go compiled op-program
   - [ ] Issue of compilatlon e.g., missing crypto library in tiny-go (or more libraries)?
-  - [ ] Any issue of 2kMA5M running tiny-go compiled code, e.g., all syscalls/hostio to virtual functions? (01)
-  - [ ] Need to confirm the time and efforts with sinka on compilation and zkWASM support (Q1)
+  - [ ] Any issue of 2kMA5M running tiny-go compiled code, e.g., all syscalls/hostio to virtual functions? (Qi)
+  - [ ] Need to confirm the time and efforts with sinka on compilation and zkWASM support (Qi)
 - [ ] Explore tiny-go compiled wasm interpreter with go runtime with geth compiled op-program
   - [ ] Implement a fully-functional interpreter on existing go implementation (e.g., https://github.com/mattn/gowasmer/blob/matn/gowasmer.go)
-  - [ ] Implement an interpreter with hostio IPO5X style)
-  - [ ] Replay a simple program with I0 (read/write/open/close with similar I0 siz as op-program) compiled with geth
+  - [ ] Implement an interpreter with hostio (POSIX style)
+  - [ ] Replay a simple program with I0 (read/write/open/close with similar IO siz as op-program) compiled with geth
 - [ ] Explore Arb rust interpreter
   - [ ] How to replace wasm import with a rust func (https://github.com/wasmerio/wasmer/blob/master/examples/hello_world.rs) (Yanlong)
-  - [ ] Implement an interpreter with hostio (P0SIX style) and replace existing Arb runtimes (and replay geth-compiled op-program)
+  - [ ] Implement an interpreter with hostio (POSIX style) and replace existing Arb runtimes (and replay geth-compiled op-program)
   - [ ] How is Wasm code replaced by wavm in Arb?
 
 - [x] op-program compilation with WASM target [yanlong / po)
