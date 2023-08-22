@@ -7,24 +7,26 @@
 ## ZK Fraud Proof
 
 - [ ] Study and summary of other x fraud-proof proposals in https:/github.com/ethereun-optinsn/ecesysten-contrbutions/1ssues/61
-- [ ] mini-program (like Fib) with host func to input and be verified on ZkWASM
-- [ ] External Oracle support in WASM (with WASI?)
+- [x] mini-program (like Fib) with host func to input and be verified on zkWASM
+  - [x] A program with target=wasm-freestanding is [here](https://github.com/LiuJiazheng/go-to-wasm-example) with libc support (memory)
+  - [ ] **A program with simple scheduler support (Frank)**
 - [ ] Explore tiny-go compiled op-program
-  - [ ] Issue of compilatlon e.g., missing crypto library in tiny-go (or more libraries)?
-  - [ ] Any issue of zkWASM running tiny-go compiled code, e.g., all syscalls/hostio to virtual functions? (Qi)
+  - [x] Issue of compilatlon e.g., missing crypto library in tiny-go (or more libraries)?  ([code]([url](https://github.com/ethstorage/optimism/pull/5)))
+  - [x] Any issue of zkWASM running tiny-go compiled code, e.g., all syscalls/hostio to virtual functions? A: Expose 3-5 external functions
   - [ ] Need to confirm the time and efforts with sinka on compilation and zkWASM support (Qi)
-- [ ] Explore tiny-go compiled wasm interpreter with go runtime with geth compiled op-program
-  - [ ] Implement a fully-functional interpreter on existing go implementation (e.g., https://github.com/mattn/gowasmer/blob/matn/gowasmer.go)
-  - [ ] Implement an interpreter with hostio (POSIX style)
-  - [ ] Replay a simple program with I0 (read/write/open/close with similar IO size as op-program) compiled with geth
+  - [ ] **Replay the tiny-go compiled op-program in any emulator (emulator can be node+wasm_exec.js, target=wasm/wasi)**
+    - [ ] Check memory size usage
+    - [ ] Check # instructions using Cannon example command line
+    - [ ] Replace hint/preimage IO with external functions
 - [ ] Explore Arb rust interpreter
-  - [ ] How to replace wasm import with a rust func (https://github.com/wasmerio/wasmer/blob/master/examples/hello_world.rs) (Yanlong)
-  - [ ] Implement an interpreter with hostio (POSIX style) and replace existing Arb runtimes (and replay geth-compiled op-program)
+  - [x] How to replace wasm import with a rust func (https://github.com/wasmerio/wasmer/blob/master/examples/hello_world.rs) (Yanlong)
+  - [x] (Skipped) Implement an interpreter with hostio (POSIX style) and replace existing Arb runtimes (and replay geth-compiled op-program)
   - [ ] How is Wasm code replaced by wavm in Arb?
 - [ ] zkWASM adapter
   - [ ] Replace floating point opcode to softfloat?
   - [ ] Or even better, remove them?
   - [ ] Memory size issue
+  - [ ] External Oracle support in WASM (with WASI?)
 
 - [x] op-program compilation with WASM target [yanlong / po)
   - [x] [fastcache](https: //github.cam/ethstoragefastcache)
@@ -37,4 +39,7 @@
 - [x] WASH emulator used in Arb
   - Arbitrum now uses a customized emulator as they use customized WAWM
 - [ ] <strike> Find a WASM emulator to replay block transition </strike>
-      
+- [ ] <strike> Explore tiny-go compiled wasm interpreter with go runtime with geth compiled op-program
+  - [ ] Implement a fully-functional interpreter on existing go implementation (e.g., https://github.com/mattn/gowasmer/blob/matn/gowasmer.go)
+  - [ ] Implement an interpreter with hostio (POSIX style)
+  - [ ] Replay a simple program with I0 (read/write/open/close with similar IO size as op-program) compiled with geth
