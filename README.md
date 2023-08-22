@@ -9,7 +9,7 @@
 - [ ] Study and summary of other x fraud-proof proposals in https:/github.com/ethereun-optinsn/ecesysten-contrbutions/1ssues/61
 - [x] mini-program (like Fib) with host func to input and be verified on zkWASM
   - [x] A program with target=wasm-freestanding is [here](https://github.com/LiuJiazheng/go-to-wasm-example) with libc support (memory)
-  - [ ] **A program with simple scheduler support (Frank)**
+  - [ ] ** A program with simple scheduler support (Frank) or `fmt.Println()?` **
 - [ ] Explore tiny-go compiled op-program
   - [x] Issue of compilatlon e.g., missing crypto library in tiny-go (or more libraries)?  ([code]([url](https://github.com/ethstorage/optimism/pull/5)))
   - [x] Any issue of zkWASM running tiny-go compiled code, e.g., all syscalls/hostio to virtual functions? A: Expose 3-5 external functions
@@ -27,6 +27,9 @@
   - [ ] Or even better, remove them?
   - [ ] Memory size issue
   - [ ] External Oracle support in WASM (with WASI?)
+  - [ ] tiny-go compiled wasm with target=zkwasm
+  - [ ] zkWASM emulator with provable state/trace
+
 
 - [x] op-program compilation with WASM target [yanlong / po)
   - [x] [fastcache](https: //github.cam/ethstoragefastcache)
