@@ -9,15 +9,16 @@
 - [ ] Study and summary of other x fraud-proof proposals in https:/github.com/ethereun-optinsn/ecesysten-contrbutions/1ssues/61
 - [x] mini-program (like Fib) with host func to input and be verified on zkWASM
   - [x] A program with target=wasm-freestanding is [here](https://github.com/LiuJiazheng/go-to-wasm-example) with libc support (memory)
-  - [ ] ** A program with simple scheduler support (Frank) or `fmt.Println()?` **
+  - [ ] **A program with simple scheduler support (Frank) or with `fmt.Println()?`**
 - [ ] Explore tiny-go compiled op-program
   - [x] Issue of compilatlon e.g., missing crypto library in tiny-go (or more libraries)?  ([code]([url](https://github.com/ethstorage/optimism/pull/5)))
   - [x] Any issue of zkWASM running tiny-go compiled code, e.g., all syscalls/hostio to virtual functions? A: Expose 3-5 external functions
   - [ ] Need to confirm the time and efforts with sinka on compilation and zkWASM support (Qi)
   - [ ] **Replay the tiny-go compiled op-program in any emulator (emulator can be node+wasm_exec.js, target=wasm/wasi)**
+    - [ ] Replay op-program native binary
     - [ ] Check memory size usage
     - [ ] Check # instructions using Cannon example command line
-    - [ ] Replace hint/preimage IO with external functions
+    - [ ] Replace hint/preimage IO with external functions (Qi)
 - [ ] Explore Arb rust interpreter
   - [x] How to replace wasm import with a rust func (https://github.com/wasmerio/wasmer/blob/master/examples/hello_world.rs) (Yanlong)
   - [x] (Skipped) Implement an interpreter with hostio (POSIX style) and replace existing Arb runtimes (and replay geth-compiled op-program)
