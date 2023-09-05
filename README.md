@@ -6,6 +6,12 @@
 
 ## ZK Fraud Proof
 
+### Materials
+
+- Fraud Proof Comparison https://norswap.com/bedrock-vs-nitro/
+- Replayable geth-compiled op-program on top of wasm_exec.js https://github.com/ethstorage/optimism/tree/js-io/op-program#build-js-wasm-and-replay
+
+### Tasks
 - [ ] Study and summary of other x fraud-proof proposals in https:/github.com/ethereun-optinsn/ecesysten-contrbutions/1ssues/61
 - [x] mini-program (like Fib) with host func to input and be verified on zkWASM
   - [x] A program with target=wasm-freestanding is [here](https://github.com/LiuJiazheng/go-to-wasm-example) with libc support (memory)
