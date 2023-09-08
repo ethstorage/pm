@@ -16,7 +16,7 @@
 - [ ] Study and summary of other x fraud-proof proposals in https:/github.com/ethereun-optinsn/ecesysten-contrbutions/1ssues/61
 - [x] mini-program (like Fib) with host func to input and be verified on zkWASM
   - [x] A program with target=wasm-freestanding is [here](https://github.com/LiuJiazheng/go-to-wasm-example) with libc support (memory)
-  - [ ] <strike> **A program with simple scheduler support (Frank) or with `fmt.Println()?`**
+  - [ ] <strike> **A program with simple scheduler support (Frank) or with `fmt.Println()?`** </strike>
 - [ ] Explore geth compiled op-program
   - [x] Replayable GOOS=js GOARCH=wasm with both fd/syscall and hostio [here](https://github.com/ethstorage/optimism/tree/js-io/op-program#build-js-wasm-and-replay)
   - [x] Replayable GOOS=wasip1 GOARCH=wasm with both fd/syscall and hostio [here](https://github.com/ethstorage/optimism/tree/js-io/op-program#build-wasi-and-replay-without-op-host-program)
