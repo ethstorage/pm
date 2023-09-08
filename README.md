@@ -21,9 +21,16 @@
   - [x] Replayable GOOS=js GOARCH=wasm with both fd/syscall and hostio [here](https://github.com/ethstorage/optimism/tree/js-io/op-program#build-js-wasm-and-replay)
   - [x] Replayable GOOS=wasip1 GOARCH=wasm with both fd/syscall and hostio [here](https://github.com/ethstorage/optimism/tree/js-io/op-program#build-wasi-and-replay-without-op-host-program)
   - [ ] Replayble zkWASM
-    - [ ] Softfloat support [issue](https://github.com/golang/go/issues/62470)
-    - [ ] No bulk memory such as memory.copy, memory.fill
+    - [ ] Softfloat support [issue](https://github.com/golang/go/issues/62470) (Frank/Qi)
+    - [ ] No bulk memory such as memory.copy, memory.fill (Frank)
+    - [ ] Set default impl of wasip1 (noop or template) (Po)
+      - [ ] static link with wasm-ld
+      - [ ] or zkWASM with wasip1 default support (need to discuss with Sinka)
     - [ ] Other zkWASM no support instructions?
+    - [ ] zkWASM hostio support (Po)
+      - https://github.com/DelphinusLab/zkWasm-host-circuits
+      - https://github.com/DelphinusLab/zkWasm/tree/host-ops-1.3
+      - https://github.com/DelphinusLab/zkWasm-rust/blob/main/src/lib.rs
 - [ ] Explore Arb rust interpreter
   - [x] How to replace wasm import with a rust func (https://github.com/wasmerio/wasmer/blob/master/examples/hello_world.rs) (Yanlong)
   - [x] (Skipped) Implement an interpreter with hostio (POSIX style) and replace existing Arb runtimes (and replay geth-compiled op-program)
@@ -32,8 +39,9 @@
   - [ ] Replace floating point opcode to softfloat?
   - [ ] Or even better, remove them?
   - [x] Memory size issue: solved by removing cache in client (and be completed moved to server)
+    - [ ] Reduce memory to 39MB (or no GC 47MB) from ~300MB
   - [ ] External Oracle support in WASM (with WASI?) (Qi)
-  - [x] <strike> tiny-go compiled wasm with target=zkwasm
+  - [x] <strike> tiny-go compiled wasm with target=zkwasm </strike>
   - [ ] zkWASM emulator with provable state/trace
 
 
