@@ -20,8 +20,10 @@
 - [ ] Explore geth compiled op-program
   - [x] Replayable GOOS=js GOARCH=wasm with both fd/syscall and hostio [here](https://github.com/ethstorage/optimism/tree/js-io/op-program#build-js-wasm-and-replay)
   - [x] Replayable GOOS=wasip1 GOARCH=wasm with both fd/syscall and hostio [here](https://github.com/ethstorage/optimism/tree/js-io/op-program#build-wasi-and-replay-without-op-host-program)
-  - [ ] Softfloat support [issue](https://github.com/golang/go/issues/62470)
   - [ ] Replayble zkWASM
+    - [ ] Softfloat support [issue](https://github.com/golang/go/issues/62470)
+    - [ ] No bulk memory such as memory.copy, memory.fill
+    - [ ] Other zkWASM no support instructions?
 - [ ] Explore Arb rust interpreter
   - [x] How to replace wasm import with a rust func (https://github.com/wasmerio/wasmer/blob/master/examples/hello_world.rs) (Yanlong)
   - [x] (Skipped) Implement an interpreter with hostio (POSIX style) and replace existing Arb runtimes (and replay geth-compiled op-program)
