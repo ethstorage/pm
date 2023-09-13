@@ -13,6 +13,7 @@
 - Replayable geth-compiled op-program with GOOS=wasip1 https://github.com/ethstorage/optimism/tree/js-io/op-program#build-wasi-and-replay-without-op-host-program
 - zkWASM
   - 利用 zkWASM 技术链接浏览器端应用 https://b23.tv/NTm7A8W
+  - Hostio design https://hackmd.io/@sinka/BJUIyufEc
 
 ### Tasks
 - [ ] Study and summary of other x fraud-proof proposals in https:/github.com/ethereun-optinsn/ecesysten-contrbutions/1ssues/61
