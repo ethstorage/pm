@@ -38,6 +38,9 @@
       - [x] wasm_input in op-program with node zkWASM emulator
       - [ ] zkWASM private input using files
   - [ ] Prove the first segment of op-program-client
+- [ ] zkWASM optimization
+  - [ ] Replace wasm code to customized hostio (e.g., hash/signature/rlp/ssz)
+  - [ ] Large memory support / prove speedup (Sinka)
 - [ ] Toolchain for zkWASM go compilation
   - [ ] zkWASM node simulator
 - [ ] Explore Arb rust interpreter
