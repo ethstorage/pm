@@ -15,6 +15,8 @@
   - 利用 zkWASM 技术链接浏览器端应用 https://b23.tv/NTm7A8W
   - https://www.youtube.com/watch?v=SzT7zHUuvm4
   - Hostio design https://hackmd.io/@sinka/BJUIyufEc
+  - ZAWA [paper](https://jhc.sjtu.edu.cn/~hongfeifu/manuscriptb.pdf)
+  - Halo2 study @ 0xPARC: https://learn.0xparc.org/materials/halo2/learning-group-1/introduction
 
 ### Tasks
 - [ ] Study and summary of other x fraud-proof proposals in https:/github.com/ethereun-optinsn/ecesysten-contrbutions/1ssues/61
