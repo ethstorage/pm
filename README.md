@@ -38,6 +38,9 @@
       - [x] wasm_input in op-program with node zkWASM emulator
       - [ ] zkWASM private input using files
   - [ ] Prove the first segment of op-program-client
+  - [ ] Stage 1 Publication Preparation
+    - [ ] Article
+    - [ ] Better code organization
 - [ ] zkWASM optimization
   - [ ] Replace wasm code to customized hostio (e.g., hash/signature/rlp/ssz)
   - [ ] Large memory support / prove speedup (Sinka)
