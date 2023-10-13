@@ -58,6 +58,11 @@
   - [x] External Oracle support in WASM (with WASI?) (Qi)
   - [x] <strike> tiny-go compiled wasm with target=zkwasm </strike>
   - [ ] zkWASM emulator with provable state/trace
+- [ ] zkWASM optimization (Oct 11 ZK Fraud Proof Meeting)
+  - [ ] Compact overhead due to wasm generated from goroutine (large etable before zkMain())
+  - [ ] Indicator eid continuation problem
+  - [ ] Parallel dump segments
+  - [ ] Large Memory Occupation: find ot invent alternative of std::vec to avoid OOM
 
 #### Finished
 - [x] op-program compilation with WASM target [yanlong / po)
