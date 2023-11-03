@@ -30,10 +30,13 @@
     - [x] Lookup optimization
     - [x] Dump parallelization
     - [ ] Try-run with initial segment data and offload tracegen per segment to the prover
+    - [ ] Productize Segment https://github.com/ethstorage/zkWasm/issues/4
+    - [ ] Exercise: U64 and U64 add/mul/div operations
   - [ ] Continuation Proof
     - [x] Learn continuation last write table
+    - [ ] Find continuation last write circuit
     - [ ] https://github.com/DelphinusLab/zkWasm/pull/198
-    - [ ] Exercise: How to write the last write table constraint?
+    - [ ] Exercise: A simple write table with the last write table?
     - [ ] How does the aggregation work?
     - [ ] zkWasm GPU?
   - [ ] zkGo optimization
