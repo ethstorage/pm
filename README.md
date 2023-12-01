@@ -31,19 +31,28 @@
     - [x] Dump parallelization
     - [ ] Try-run with initial segment data and offload tracegen per segment to the prover
     - [ ] Productize Segment https://github.com/ethstorage/zkWasm/issues/4
-    - [ ] Exercise: U64 and U64 add/mul/div operations
+    - [x] Exercise: U64 and U64 add/mul/div operations
+    - [ ] Exercise: Memory operations
+    - [ ] Exercise: Function call operations
   - [ ] Continuation Proof
     - [x] Learn continuation last write table
-    - [ ] Find continuation last write circuit
-    - [ ] https://github.com/DelphinusLab/zkWasm/pull/198
-    - [ ] Exercise: A simple write table with the last write table?
+    - [ ] Replay continuation in-memory code (branch cont_dev)
+      - [x] https://github.com/DelphinusLab/zkWasm/pull/198
+      - [ ] https://github.com/DelphinusLab/zkWasm/pull/210
+      - [ ] Determine whether to push segment code first or later vs in-memory code
+      - [ ] (Frank) Prepare a wasm with about 5M~10M runtime instructions and determine the number of lines
+      - [ ] **A unit test to compare in-memory segment vs optimized segment**
+    - [ ] (Po) Find continuation glue code (e.g., last write circuit)
+    - [x] Exercise: A simple write table with the last write table?
     - [ ] How does the aggregation work?
     - [ ] zkWasm GPU?
   - [ ] zkGo optimization
     - [ ] Proof pre-image for Go initialization
   - [ ] zkWASM optimization
     - [ ] Replace wasm code to customized hostio (e.g., hash/signature/rlp/ssz)
-      - [ ] Keccak256 https://github.com/DelphinusLab/zkWasm-host-circuits/pull/47
+      - [ ] Keccak256 https://github.com/DelphinusLab/zkWasm-host-circuits/pull/47 (by Grant)
+    - [ ] zk Fraud Proof in Rust
+      - [ ] Risc0 zkWasm performance comparison (by Grant)
     - [ ] Large memory support / prove speedup (Sinka)
 
 
