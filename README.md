@@ -31,9 +31,8 @@
     - [x] Dump parallelization
     - [ ] Try-run with initial segment data and offload tracegen per segment to the prover
     - [ ] Productize Segment https://github.com/ethstorage/zkWasm/issues/4
-    - [x] Exercise: U64 and U64 add/mul/div operations
-    - [ ] Exercise: Memory operations
-    - [ ] Exercise: Function call operations
+    - [x] Exercise: U64 and U64 add/mul/div operations,  Memory operations, Function call operations
+      - [x] https://github.com/ethstorage/zkWasm/blob/doc/ 
   - [ ] Continuation Proof
     - [x] Learn continuation last write table
     - [ ] Replay continuation in-memory code (branch cont_dev)
@@ -44,7 +43,7 @@
       - [ ] **A unit test to compare in-memory segment vs optimized segment**
     - [ ] (Po) Find continuation glue code (e.g., last write circuit)
     - [x] Exercise: A simple write table with the last write table?
-    - [ ] How does the aggregation work?
+    - [ ] (Po) How does the aggregation work?
     - [ ] zkWasm GPU?
   - [ ] zkGo optimization
     - [ ] Proof pre-image for Go initialization
