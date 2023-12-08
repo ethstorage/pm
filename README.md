@@ -32,18 +32,23 @@
     - [ ] Try-run with initial segment data and offload tracegen per segment to the prover
     - [ ] Productize Segment https://github.com/ethstorage/zkWasm/issues/4
     - [x] Exercise: U64 and U64 add/mul/div operations,  Memory operations, Function call operations
-      - [x] https://github.com/ethstorage/zkWasm/blob/doc/ 
+      - [x] https://github.com/ethstorage/zkWasm/blob/doc/
+    - [ ] Smoke test memory measurement (< 32MB)
   - [ ] Continuation Proof
     - [x] Learn continuation last write table
     - [ ] Replay continuation in-memory code (branch cont_dev)
       - [x] https://github.com/DelphinusLab/zkWasm/pull/198
       - [ ] https://github.com/DelphinusLab/zkWasm/pull/210
       - [ ] Determine whether to push segment code first or later vs in-memory code
-      - [ ] (Frank) Prepare a wasm with about 5M~10M runtime instructions and determine the number of lines
+      - [x] (Frank) Prepare a wasm with about 5M~10M runtime instructions and determine the number of lines
+        - [x] https://github.com/ethstorage/zkWasm/blob/frank/dev/zk-fib.sh
+      - [ ] E2E in-memory segment with aggregation script
       - [ ] **A unit test to compare in-memory segment vs optimized segment**
     - [ ] (Po) Find continuation glue code (e.g., last write circuit)
+    - [ ] EID extension
     - [x] Exercise: A simple write table with the last write table?
-    - [ ] (Po) How does the aggregation work?
+    - [ ] (Frank) How does the aggregation/batcher work?
+      - [ ] https://openbuild.xyz/learn/courses/80/1850
     - [ ] zkWasm GPU?
   - [ ] zkGo optimization
     - [ ] Proof pre-image for Go initialization
