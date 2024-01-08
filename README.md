@@ -46,19 +46,23 @@
       - [ ] **A unit test to compare in-memory segment vs optimized segment**
     - [ ] (Po) Find continuation glue code (e.g., last write circuit)
     - [ ] EID extension
+    - [ ] continuation support for host
     - [x] Exercise: A simple write table with the last write table?
     - [ ] (Frank) How does the aggregation/batcher work?
       - [ ] https://openbuild.xyz/learn/courses/80/1850
+      - [ ] https://github.com/DelphinusLab/halo2aggregator-s/commit/e631dc36e0ea10a1f65b05d50ca2efc17d5859c7
     - [ ] zkWasm GPU?
   - [ ] zkGo optimization
     - [ ] Proof pre-image for Go initialization
   - [ ] zkWASM optimization
+    - [ ] parallelizing synthesize
     - [ ] Replace wasm code to customized hostio (e.g., hash/signature/rlp/ssz)
       - [ ] Keccak256 https://github.com/DelphinusLab/zkWasm-host-circuits/pull/47 (by Grant)
     - [ ] zk Fraud Proof in Rust
       - [ ] Risc0 zkWasm performance comparison (by Grant)
+      - [ ] Single GPU profiling
+      - [ ] k = 23 / 24 benchmark
     - [ ] Large memory support / prove speedup (Sinka)
-
 
 #### Finished
 - [x] Stage 1: zkGo
