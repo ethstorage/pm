@@ -58,10 +58,10 @@
   - [ ] zkWASM optimization
     - [ ] parallelizing synthesize
     - [ ] Replace wasm code to customized hostio (e.g., hash/signature/rlp/ssz)
-      - [x ] Keccak256 https://github.com/DelphinusLab/zkWasm-host-circuits/pull/47 (by Grant)
+      - [x] Keccak256 https://github.com/DelphinusLab/zkWasm-host-circuits/pull/47 (by Grant)
     - [ ] zk Fraud Proof in Rust
       - [x] Risc0 zkWasm performance comparison (by [Grant](https://github.com/ethstorage/EthStorage-Grant/tree/zk/grant-1))
-      - [x ] Single GPU profiling
+      - [x] Single GPU profiling
       - [ ] k = 23 / 24 benchmark
     - [ ] Large memory support / prove speedup (Sinka)
 
