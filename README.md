@@ -42,7 +42,8 @@
       - [ ] Determine whether to push segment code first or later vs in-memory code
       - [x] (Frank) Prepare a wasm with about 5M~10M runtime instructions and determine the number of lines
         - [x] https://github.com/ethstorage/zkWasm/blob/frank/dev/zk-fib.sh
-      - [ ] E2E in-memory segment with aggregation script
+      - [ ] E2E in-memory segment with aggregation script 
+        - [ ] (pending blocked by lacking of circuit.data & name_advice) [rlp testcase](https://github.com/dajuguan/continuation)
       - [ ] **A unit test to compare in-memory segment vs optimized segment**
     - [ ] (Po) Find continuation glue code (e.g., last write circuit)
     - [ ] EID extension
@@ -57,10 +58,10 @@
   - [ ] zkWASM optimization
     - [ ] parallelizing synthesize
     - [ ] Replace wasm code to customized hostio (e.g., hash/signature/rlp/ssz)
-      - [ ] Keccak256 https://github.com/DelphinusLab/zkWasm-host-circuits/pull/47 (by Grant)
+      - [x ] Keccak256 https://github.com/DelphinusLab/zkWasm-host-circuits/pull/47 (by Grant)
     - [ ] zk Fraud Proof in Rust
-      - [ ] Risc0 zkWasm performance comparison (by Grant)
-      - [ ] Single GPU profiling
+      - [x] Risc0 zkWasm performance comparison (by [Grant](https://github.com/ethstorage/EthStorage-Grant/tree/zk/grant-1))
+      - [x ] Single GPU profiling
       - [ ] k = 23 / 24 benchmark
     - [ ] Large memory support / prove speedup (Sinka)
 
