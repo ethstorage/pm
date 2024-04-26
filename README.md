@@ -23,7 +23,9 @@
 - [ ] Explore geth compiled op-program
   - [x] Replayable GOOS=js GOARCH=wasm with both fd/syscall and hostio [here](https://github.com/ethstorage/optimism/tree/js-io/op-program#build-js-wasm-and-replay)
   - [x] Replayable GOOS=wasip1 GOARCH=wasm with both fd/syscall and hostio [here](https://github.com/ethstorage/optimism/tree/js-io/op-program#build-wasi-and-replay-without-op-host-program)
-  - [ ] Prove the first segment (smoke-test) of op-program-client (TODO(Po): verify and add reproduce link)
+  - [ ] Prove the first segment (smoke-test) of op-program-client
+    - [ ] TODO(Po): verify and add reproduce link
+    - [ ] TODO(Po): write a summary for posting status
 - [ ] Stage 2: Continuation
   - [ ] Tracegen
     - [x] Segment memory dump
@@ -33,7 +35,7 @@
     - [ ] Productize Segment https://github.com/ethstorage/zkWasm/issues/4
     - [x] Exercise: U64 and U64 add/mul/div operations,  Memory operations, Function call operations
       - [x] https://github.com/ethstorage/zkWasm/blob/doc/
-    - [ ] Smoke test memory measurement (< 32MB)
+    - [x] Smoke test memory measurement (< 32MB)
   - [ ] Continuation Proof
     - [x] Learn continuation last write table
     - [ ] Replay continuation in-memory code (branch cont_dev)
@@ -63,7 +65,7 @@
       - [x] Risc0 zkWasm performance comparison (by [Grant](https://github.com/ethstorage/EthStorage-Grant/tree/zk/grant-1))
       - [x] Single GPU profiling
       - [ ] k = 23 / 24 benchmark
-      - [ ] **Experiment with op-reth**
+      - [ ] **Experiment with op-reth** (Frank)
     - [ ] Large memory support / prove speedup (Sinka)
       - [x] 32MB memory & code size
       - [ ] 64MB memory is in progress
