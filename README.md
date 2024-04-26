@@ -47,16 +47,18 @@
       - [ ] Determine whether to push segment code first or later vs in-memory code
       - [x] (Frank) Prepare a wasm with about 5M~10M runtime instructions and determine the number of lines
         - [x] https://github.com/ethstorage/zkWasm/blob/frank/dev/zk-fib.sh
-      - [ ] E2E in-memory segment with aggregation script 
-        - [ ] (pending blocked by lacking circuit.data & name_advice) [rlp testcase](https://github.com/dajuguan/continuation)
+      - [x] E2E in-memory segment with aggregation script 
+        - [x] (pending blocked by lacking circuit.data & name_advice) [rlp testcase](https://github.com/dajuguan/continuation)
+        - [x] Completed a [script](https://github.com/ethstorage/zkWasm/blob/frank/cont_script/continuation.md) that could help on batching + continuation 
       - [ ] **A unit test to compare in-memory segment vs optimized segment**
     - [ ] (Po) Find continuation glue code (e.g., last write circuit)
     - [ ] **EID extension** (20B)
     - [ ] Continuation support for host
     - [x] Exercise: A simple write table with the last write table?
-    - [ ] (Frank) How does the aggregation/batcher work?
-      - [ ] https://openbuild.xyz/learn/courses/80/1850
-      - [ ] https://github.com/DelphinusLab/halo2aggregator-s/commit/e631dc36e0ea10a1f65b05d50ca2efc17d5859c7
+    - [x] (Frank) How does the aggregation/batcher work?
+      - [x] https://openbuild.xyz/learn/courses/80/1850
+      - [x] https://github.com/DelphinusLab/halo2aggregator-s/commit/e631dc36e0ea10a1f65b05d50ca2efc17d5859c7
+      - [x] slide: https://docs.google.com/presentation/d/1Y-B-2J6qYhyUWNDKtTwmha6_z2Z1omekL_x4CKwqSFU/edit#slide=id.g2bb7f73b7ba_0_5 
     - [x] zkWasm GPU/CUDA
   - [ ] zkGo optimization
     - [ ] Proof pre-image for Go initialization
