@@ -26,6 +26,9 @@
   - [ ] Prove the first segment (smoke-test) of op-program-client
     - [ ] TODO(Po): verify and add reproduce link
     - [ ] TODO(Po): write a summary for posting status
+- [ ] OP Stack Grant
+  - [x] https://app.charmverse.io/op-grants/page-29596258544520615
+  - [x] https://app.charmverse.io/op-grants/research-on-alternative-op-stack-zero-knowledge-fault-proof-using-wasm-5197627111945315
 - [ ] Stage 2: Continuation
   - [ ] Tracegen
     - [x] Segment memory dump
