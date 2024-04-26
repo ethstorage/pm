@@ -23,7 +23,7 @@
 - [ ] Explore geth compiled op-program
   - [x] Replayable GOOS=js GOARCH=wasm with both fd/syscall and hostio [here](https://github.com/ethstorage/optimism/tree/js-io/op-program#build-js-wasm-and-replay)
   - [x] Replayable GOOS=wasip1 GOARCH=wasm with both fd/syscall and hostio [here](https://github.com/ethstorage/optimism/tree/js-io/op-program#build-wasi-and-replay-without-op-host-program)
-  - [ ] Prove the first segment of op-program-client
+  - [ ] Prove the first segment (smoke-test) of op-program-client (TODO(Po): verify and add reproduce link)
 - [ ] Stage 2: Continuation
   - [ ] Tracegen
     - [x] Segment memory dump
@@ -43,27 +43,30 @@
       - [x] (Frank) Prepare a wasm with about 5M~10M runtime instructions and determine the number of lines
         - [x] https://github.com/ethstorage/zkWasm/blob/frank/dev/zk-fib.sh
       - [ ] E2E in-memory segment with aggregation script 
-        - [ ] (pending blocked by lacking of circuit.data & name_advice) [rlp testcase](https://github.com/dajuguan/continuation)
+        - [ ] (pending blocked by lacking circuit.data & name_advice) [rlp testcase](https://github.com/dajuguan/continuation)
       - [ ] **A unit test to compare in-memory segment vs optimized segment**
     - [ ] (Po) Find continuation glue code (e.g., last write circuit)
-    - [ ] EID extension
-    - [ ] continuation support for host
+    - [ ] **EID extension** (20B)
+    - [ ] Continuation support for host
     - [x] Exercise: A simple write table with the last write table?
     - [ ] (Frank) How does the aggregation/batcher work?
       - [ ] https://openbuild.xyz/learn/courses/80/1850
       - [ ] https://github.com/DelphinusLab/halo2aggregator-s/commit/e631dc36e0ea10a1f65b05d50ca2efc17d5859c7
-    - [ ] zkWasm GPU?
+    - [x] zkWasm GPU/CUDA
   - [ ] zkGo optimization
     - [ ] Proof pre-image for Go initialization
   - [ ] zkWASM optimization
-    - [ ] parallelizing synthesize
+    - [x] Parallelizing synthesize
     - [ ] Replace wasm code to customized hostio (e.g., hash/signature/rlp/ssz)
       - [x] Keccak256 https://github.com/DelphinusLab/zkWasm-host-circuits/pull/47 (by Grant)
     - [ ] zk Fraud Proof in Rust
       - [x] Risc0 zkWasm performance comparison (by [Grant](https://github.com/ethstorage/EthStorage-Grant/tree/zk/grant-1))
       - [x] Single GPU profiling
       - [ ] k = 23 / 24 benchmark
+      - [ ] **Experiment with op-reth**
     - [ ] Large memory support / prove speedup (Sinka)
+      - [x] 32MB memory & code size
+      - [ ] 64MB memory is in progress
 
 #### Finished
 - [x] Stage 1: zkGo
