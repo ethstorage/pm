@@ -1,8 +1,8 @@
 ## Tasks
-- [x]FaultDisputeGame contract [draft](https://github.com/ethstorage/optimism/pull/17/files)
-- [x][FaultDisputeGame contract @Bill](https://github.com/ethstorage/optimism/pull/21/files)
-- [x][test for 4-ary](https://github.com/JustXxx/optimism/commit/c359a05aaa4467eaa0103162552d6d7256abf2a2)
-- [x][4844 point evaluation @Po](https://github.com/dajuguan/solidity/blob/main/eip-4844-kzg/hardhat/test/Lock.js)
+- [x] FaultDisputeGame contract [draft](https://github.com/ethstorage/optimism/pull/17/files)
+- [x] [FaultDisputeGame contract @Bill](https://github.com/ethstorage/optimism/pull/21/files)
+- [x] [test for 4-ary](https://github.com/JustXxx/optimism/commit/c359a05aaa4467eaa0103162552d6d7256abf2a2)
+- [x] [4844 point evaluation @Po](https://github.com/dajuguan/solidity/blob/main/eip-4844-kzg/hardhat/test/Lock.js)
 - [ ] e2e test of 4-ary dispute game (@Bill @Po)
 ## Materials
 - [op proposal & milestones](https://app.charmverse.io/op-grants/page-29596258544520615)
