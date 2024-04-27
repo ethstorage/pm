@@ -4,6 +4,7 @@
 - [x] [test for 4-ary](https://github.com/JustXxx/optimism/commit/c359a05aaa4467eaa0103162552d6d7256abf2a2)
 - [x] [4844 point evaluation @Po](https://github.com/dajuguan/solidity/blob/main/eip-4844-kzg/hardhat/test/Lock.js)
 - [ ] e2e test of 4-ary dispute game (@Bill @Po)
+  - [ ] op-challenger, alphabettest(how to submit claim)
 ## Materials
 - [op proposal & milestones](https://app.charmverse.io/op-grants/page-29596258544520615)
 
