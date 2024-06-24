@@ -50,3 +50,13 @@ Get L2 Blob in two steps:
 
 1. [Construct](https://github.com/ethstorage/da-server/blob/431639da87c37816293c2d4ca67e614c2dc372db/pkg/da/client/client.go#L25) a DA Client.
 2. Get L2 blobs with [GetBlobs](https://github.com/ethstorage/da-server/blob/431639da87c37816293c2d4ca67e614c2dc372db/pkg/da/client/client.go#L68).
+
+Or by [this](https://github.com/ethstorage/da-server) cli tool like following:
+
+
+```bash
+git clone https://github.com/ethstorage/da-server
+cd da-server
+go run main.go da download --rpc http://142.132.154.16:8888 --blob_hash 01314c3f1d37db90fed33fc52516505cbfa37bfc704963dfef776ef4ef52ab4f 
+```
+(Replace `blob_hash` parameter accordingly.)
