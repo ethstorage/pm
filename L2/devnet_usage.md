@@ -60,3 +60,11 @@ cd da-server
 go run main.go da download --rpc http://142.132.154.16:8888 --blob_hash 01314c3f1d37db90fed33fc52516505cbfa37bfc704963dfef776ef4ef52ab4f 
 ```
 (Replace `blob_hash` parameter accordingly.)
+
+# EthStorage
+```bash
+Storage contract: 0x90a708C0dca081ca48a9851a8A326775155f87Fd
+RPC: [http://142.132.154.16:8545](http://65.108.230.142:9545)
+Chain id: 3335
+```
+
