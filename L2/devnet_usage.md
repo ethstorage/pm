@@ -67,4 +67,14 @@ Storage contract: 0x90a708C0dca081ca48a9851a8A326775155f87Fd
 RPC: http://142.132.154.16:8545
 Chain id: 3335
 ```
+```bash
+// upgrade ethfs-cli to the latest first
+// deploy a FlatDirectory contract
+$ ethfs-cli create -p <private key> -c 42069
 
+// upload your application using file upload type 2
+ethfs-cli upload -f <your application folder> -a <flat directory address> -c 42069 -p <private key> -t 2
+
+// visit it using gateway
+https://<flat_directory_address>.3335.w3link.io/app.html
+```
