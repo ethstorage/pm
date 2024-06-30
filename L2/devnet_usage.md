@@ -43,13 +43,12 @@ Then if you import `0x4200000000000000000000000000000000000800` into metamask, y
 DA Server Info:
 ```bash
 DA Server: http://142.132.154.16:8888
-DA Signer: 0x9268Dca89E7B1cD35F92d04DdC1De60Fb695696F
 ```
 
 Get L2 Blob in two steps:
 
-1. [Construct](https://github.com/ethstorage/da-server/blob/431639da87c37816293c2d4ca67e614c2dc372db/pkg/da/client/client.go#L25) a DA Client.
-2. Get L2 blobs with [GetBlobs](https://github.com/ethstorage/da-server/blob/431639da87c37816293c2d4ca67e614c2dc372db/pkg/da/client/client.go#L68).
+1. [Construct](https://github.com/ethstorage/da-server/blob/ed2ee4ff52d9f08231708b0a88c23838a39e3c27/pkg/da/client/client.go#L22) a DA Client.
+2. Get L2 blobs with [GetBlobs](https://github.com/ethstorage/da-server/blob/ed2ee4ff52d9f08231708b0a88c23838a39e3c27/pkg/da/client/client.go#L92).
 
 Or by [this](https://github.com/ethstorage/da-server) cli tool like following:
 
