@@ -37,7 +37,7 @@ cast send --value 10ether $SOUL_GAS_TOKEN 'deposit()' --private-key $PRIVATE_KEY
 
 Then if you import `0x4200000000000000000000000000000000000800` into metamask, you'll see your balance of `Soul Gas Token`.
 
-# Get L2 Blob from DA Server
+# Get L2 Blob From DA Server
 
 
 DA Server Info:
