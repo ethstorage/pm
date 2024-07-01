@@ -63,7 +63,7 @@ go run main.go da download --rpc http://142.132.154.16:8888 --blob_hash 01314c3f
 # EthStorage
 ```bash
 Storage contract: 0x90a708C0dca081ca48a9851a8A326775155f87Fd
-RPC: http://142.132.154.16:8545
+RPC: http://65.108.230.142:9545
 Chain id: 3335
 ```
 ```bash
