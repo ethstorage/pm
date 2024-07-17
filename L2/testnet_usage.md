@@ -75,10 +75,10 @@ $ ethfs-cli create -p <private key> -c 43069
 ethfs-cli upload -f <your application folder> -a <flat directory address> -c 43069 -p <private key> -t 2
 
 // visit it using gateway
-https://<flat_directory_address>.3336.w3link.io/app.html
+https://<flat_directory_address>.3336.w3link.io/index.html
 
 // set the default page path
-ethfs-cli default -a <flat_directory_address> -f app.html -p <private_key> -r <rpc_url>
+ethfs-cli default -a <flat_directory_address> -f <index.html> -p <private_key> -c 43069
 
 // visit it using gateway like this
 https://<flat_directory_address>.3336.w3link.io/
