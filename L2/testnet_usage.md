@@ -77,6 +77,14 @@ ethfs-cli upload -f <your application folder> -a <flat directory address> -c 430
 // visit it using gateway
 https://<flat_directory_address>.3336.w3link.io/app.html
 
-// register you app's ENS name like <my-dapp.eth> on sepolia, and add a text record: name => contentcontract && value => esl2-t:<flat_directory_address>, then you can visit it by
-https://my-dapp.eth.sep.w3link.io/app.html
+// set the default page path
+ethfs-cli default -a <flat_directory_address> -f app.html -p <private_key> -r <rpc_url>
+
+// visit it using gateway like this
+https://<flat_directory_address>.3336.w3link.io/
+
+// register an ENS name like <my-dapp.eth> on sepolia
+// and add a text record: name is "contentcontract", and value is "esl2-t:<flat_directory_address>"
+// you can visit it by the following link:
+https://my-dapp.eth.sep.w3link.io/
 ```
