@@ -4,7 +4,7 @@
 ```bash
 Entrance: https://bridge.testnet.worldsuper.computer
 Explorer：http://65.109.20.29/
-RPC: http://65.109.20.29:8545 or https://rpc.worldsuper.computer
+RPC: http://65.109.20.29:8545 or https://rpc.testnet.worldsuper.computer
 Custom Gas Token: 0xe6ABD81D16a20606a661D4e075cdE5734AB62519
 ```
 
