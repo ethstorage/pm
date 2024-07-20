@@ -5,7 +5,7 @@
 Entrance: https://bridge.testnet.worldsuper.computer
 Faucet: https://wsc-faucet.eth.sep.w3link.io/
 Explorer：https://explorer.testnet.worldsuper.computer or http://65.109.20.29/
-RPC: https://rpc.testnet.worldsuper.computer:8545 or http://65.109.20.29:8545 or 
+RPC: https://rpc.testnet.worldsuper.computer:8545 or http://65.109.20.29:8545 
 Custom Gas Token: 0xe6ABD81D16a20606a661D4e075cdE5734AB62519
 ```
 
