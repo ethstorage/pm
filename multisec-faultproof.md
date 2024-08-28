@@ -1,10 +1,15 @@
 ## Tasks
 - [x] FaultDisputeGame contract [draft](https://github.com/ethstorage/optimism/pull/17/files)
-- [x] [FaultDisputeGame contract @Bill](https://github.com/ethstorage/optimism/pull/21/files)
-- [x] [test for 4-ary](https://github.com/JustXxx/optimism/commit/c359a05aaa4467eaa0103162552d6d7256abf2a2)
+- [x] [FaultDisputeGame contract @Bill @Qi](https://github.com/ethstorage/optimism/blob/develop/packages/contracts-bedrock/src/dispute/FaultDisputeGameN.sol)
 - [x] [4844 point evaluation @Po](https://github.com/dajuguan/solidity/blob/main/eip-4844-kzg/hardhat/test/Lock.js)
-- [ ] e2e test of 4-ary dispute game (@Bill @Po)
-  - [ ] op-challenger, alphabettest(how to submit claim)
+- [x] [contract test of 4-ary dispute game @Bill @Po](https://github.com/ethstorage/optimism/blob/develop/packages/contracts-bedrock/test/dispute/FaultDisputeGameN.t.sol)
+- [ ] E2E test of 4-ary dispute game (@Bill @Po)
+  - [ ] Alphabet game
+    - [ ] upgrade [CalculateNextActions](https://github.com/ethstorage/optimism/blob/78e1084ec14d3003cb9e546b9eb5a22db7408ac2/op-challenger/game/fault/agent.go#L101) for [TraceAccessor interface](https://github.com/ethstorage/optimism/blob/c41bb739f15005412f227a130474433e168faf8c/op-challenger/game/fault/trace/alphabet/provider.go#L46) and [test it](https://github.com/ethstorage/optimism/blob/78e1084ec14d3003cb9e546b9eb5a22db7408ac2/op-challenger/game/fault/solver/game_solver_test.go)
+    - [ ] - [ ] upgrade [PerformAction](https://github.com/ethstorage/optimism/blob/78e1084ec14d3003cb9e546b9eb5a22db7408ac2/op-challenger/game/fault/responder/responder.go) and [test it](https://github.com/ethstorage/optimism/blob/fdf5bd0632e5e044292013e9212d3f249c444980/op-challenger/game/fault/solver/solver_test.go)
+    - [ ] - [ ] [e2e test](https://github.com/ethstorage/optimism/blob/2586a82f6c270e86c766b2f895182c2c963e9ef5/op-e2e/faultproofs/output_alphabet_test.go)
+  - [ ] adapt for Cannon
+  - [ ] integrate [op-dispute-mon](https://github.com/ethereum-optimism/optimism/tree/develop/op-dispute-mon)
 ## Materials
 - [op proposal & milestones](https://app.charmverse.io/op-grants/page-29596258544520615)
 
