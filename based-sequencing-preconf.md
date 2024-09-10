@@ -24,4 +24,12 @@ This design mentions no need hard fork. There is a video [here](https://www.yout
 - [taiko mev](https://ethresear.ch/t/based-rollups-can-reward-proposers-first-come-first-serve/18317)
 
 ## Tasks
-How to init with OP stack?
+
+### Preconfirmation Infrastructures
+- [x] [bolt devnet](https://github.com/chainbound/bolt/issues/218)
+- [ ] bolt rpc
+- [ ] bolt sidecar
+
+### Preconfirmation Users
+- [ ] rollup
+- [ ] L1 users
