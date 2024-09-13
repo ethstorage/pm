@@ -27,9 +27,8 @@ This design mentions no need hard fork. There is a video [here](https://www.yout
 
 ### Preconfirmation Infrastructures
 - [x] [bolt devnet](https://github.com/chainbound/bolt/issues/218)
-- [ ] bolt rpc
-- [ ] bolt sidecar
+- [x] [bolt demo flow](./bolt.md)
+- [ ] bolt opt-in/challenge
 
 ### Preconfirmation Users
-- [ ] rollup
-- [ ] L1 users
+- [ ] taiko nethermind demo
