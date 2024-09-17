@@ -24,4 +24,11 @@ This design mentions no need hard fork. There is a video [here](https://www.yout
 - [taiko mev](https://ethresear.ch/t/based-rollups-can-reward-proposers-first-come-first-serve/18317)
 
 ## Tasks
-How to init with OP stack?
+
+### Preconfirmation Infrastructures
+- [x] [bolt devnet](https://github.com/chainbound/bolt/issues/218)
+- [x] [bolt demo flow](./bolt.md)
+- [ ] bolt opt-in/challenge
+
+### Preconfirmation Users
+- [ ] taiko nethermind demo
