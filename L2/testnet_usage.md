@@ -2,10 +2,10 @@
 # Basic Info
 
 ```bash
-Entrance: https://bridge.alpha.testnet.worldsuper.computer
-Faucet: https://wsc-faucet.eth.sep.w3link.io/
-Explorer：https://explorer.alpha.testnet.worldsuper.computer or http://65.109.20.29/
-RPC: https://rpc.alpha.testnet.worldsuper.computer:8545 or http://65.109.20.29:8545 
+Entrance: https://bridge.alpha.testnet.superworld.computer
+Faucet: https://swc-faucet.eth.sep.w3link.io/
+Explorer：https://explorer.alpha.testnet.superworld.computer or http://65.109.20.29/
+RPC: https://rpc.alpha.testnet.superworld.computer:8545 or http://65.109.20.29:8545 
 Custom Gas Token: 0xe6ABD81D16a20606a661D4e075cdE5734AB62519
 ```
 
