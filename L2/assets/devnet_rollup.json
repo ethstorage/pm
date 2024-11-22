@@ -1,24 +1,24 @@
 {
   "genesis": {
     "l1": {
-      "hash": "0xc29c621cfc4331e834db10de0c6e6c733f28dd8c5a4ddf95b0f320ebef6841d1",
-      "number": 5962192
+      "hash": "0xeb575042981dc2c81000ece9cd4f932eed14ba487af2a2fc69d092e87d2dc3f2",
+      "number": 7120453
     },
     "l2": {
-      "hash": "0x99e693eb24c7837aff0b9250f1f61f1f8680a9e0a84f3f1daa879ec27a0444da",
+      "hash": "0x30ad83241bf0e9f9e07867ef08f1b0ac12b48e890d611cf9cc63d837e8dde93c",
       "number": 0
     },
-    "l2_time": 1716476628,
+    "l2_time": 1732165212,
     "system_config": {
       "batcherAddr": "0xf16fe8a2ba6bfaacf11c8bbf16e5ccc2f718474b",
       "overhead": "0x0000000000000000000000000000000000000000000000000000000000000000",
-      "scalar": "0x00000000000000000000000000000000000000000000000000000000000f4240",
-      "gasLimit": 30000000
+      "scalar": "0x010000000000000000000000000000000000000000000000000c5fc500000558",
+      "gasLimit": 60000000
     }
   },
   "block_time": 2,
   "max_sequencer_drift": 600,
-  "seq_window_size": 3600,
+  "seq_window_size": 7200,
   "channel_timeout": 300,
   "l1_chain_id": 11155111,
   "l2_chain_id": 42069,
@@ -26,16 +26,13 @@
   "canyon_time": 0,
   "delta_time": 0,
   "ecotone_time": 0,
+  "fjord_time": 0,
+  "granite_time": 0,
   "batch_inbox_address": "0x27504265a9bc4330e3fe82061a60cd8b6369b4dc",
-  "deposit_contract_address": "0x9ed5c0fd5b1e6852744819a9f33573f69d5345af",
-  "l1_system_config_address": "0xc09aaa3e5f27bd49411063bb8456e627857f3d3e",
-  "protocol_versions_address": "0x0000000000000000000000000000000000000000",
-  "da_challenge_contract_address": "0x0000000000000000000000000000000000000000",
+  "deposit_contract_address": "0xa3e462150c1b8c4eb4760d01bd8a96bc422c0067",
+  "l1_system_config_address": "0x7891508ac15aff02f7f8599c5594fe238382c879",
+  "protocol_versions_address": "0xe74f0de60d9f97ab52122b4e9ea67fea1158ff79",
   "l2_blob_config": {
-	  "enable_l2_blob": true,
-	  "dac_config": {
-		  "url": "http://127.0.0.1:8888"
-	  }
+    "l2BlobTime": 0
   }
 }
-
