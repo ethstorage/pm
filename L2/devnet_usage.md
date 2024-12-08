@@ -2,10 +2,11 @@
 # Basic Info
 
 ```bash
-Entrance: https://quarkchain-b1ac26e1bc5a3c1f.testnets.rollbridge.app/
 Explorer：http://142.132.154.16/
 RPC: http://142.132.154.16:8545
 Custom Gas Token: 0xe6ABD81D16a20606a661D4e075cdE5734AB62519
+Portal: 0xa3e462150c1b8c4eb4760d01bd8a96bc422c0067
+System Config: 0x7891508ac15aff02f7f8599c5594fe238382c879
 ```
 
 # Get Custom Gas Token On L1
