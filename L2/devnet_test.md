@@ -166,7 +166,8 @@ make verify-devnet
 # Test L2 BLOB
 
 ```bash
-# (optional) run da server
+# (optional) 
+# run an extra da server. A da server is already included in the Docker container and is hosted at http://localhost:8888
 git clone git@github.com:ethstorage/da-server.git
 
 # prepare config
@@ -174,9 +175,7 @@ git clone git@github.com:ethstorage/da-server.git
 go run main.go da start --config config.json
 
 # add the server in docker-compose
-```
 
-```bash
 # edit devnetL1-template.json 
 # add l2GenesisBlobTimeOffset 0 
 
@@ -194,7 +193,11 @@ make devnet-up
 ```bash
 # send a blob tx
 cast send $ADDR --private-key $PK --blob --path <file> -r $L2
+
 # check the blob is stored
+# get the blob datahash
+cast tx <tx-hash> -r $L2
 # download the blob (under da-server)
-go run main.go da download --rpc http://65.109.20.29:8888 --blob_hash 01314c3f1d37db90fed33fc52516505cbfa37bfc704963dfef776ef4ef52ab4f
+cd da-server
+go run main.go da download --rpc http://localhost:8888 --blob_hash <blob-data-hash>
 ```
