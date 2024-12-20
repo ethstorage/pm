@@ -193,6 +193,8 @@ make devnet-up
 ```bash
 # send a blob tx
 cast send $ADDR --private-key $PK --blob --path <file> -r $L2
+
+# check the blob is stored
 # get the blob datahash
 cast tx <tx-hash> -r $L2
 # download the blob (under da-server)
