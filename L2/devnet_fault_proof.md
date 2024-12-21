@@ -1,6 +1,8 @@
 Run Fault Proof on Devnet
 =========================
 
+(TODO: the fault proof runs on an old op version. We should update the doc to the latest op-es).
+
 # Setup Helper Functions
 ```
 function json_to_env() {
