@@ -61,33 +61,3 @@ go run main.go da download --rpc http://5.9.87.214:8888 --blob_hash 01314c3f1d37
 ```
 (Replace `blob_hash` parameter accordingly.)
 
-# EthStorage
-```bash
-Storage contract: 0x64003adbdf3014f7E38FC6BE752EB047b95da89A
-RPC: https://rpc.testnet.l2.ethstorage.io:9540 or http://65.109.115.36:9540
-Chain id: 3336
-```
-```bash
-// upgrade ethfs-cli to the latest first
-$ npm install -g ethfs-cli
-
-// deploy a FlatDirectory contract
-$ ethfs-cli create -p <private key> -c 43069
-
-// upload your application using file upload type 2
-$ ethfs-cli upload -f <your application folder> -a <flat directory address> -c 43069 -p <private key> -t 2
-
-// visit it using gateway
-https://<flat_directory_address>.3336.w3link.io/index.html
-
-// set the default page path
-$ ethfs-cli default -a <flat_directory_address> -f <index.html> -p <private_key> -c 43069
-
-// visit it using gateway like this
-https://<flat_directory_address>.3336.w3link.io/
-
-// register an ENS name like <my-dapp.eth> on sepolia
-// and add a text record: name is "contentcontract", and value is "esl2-t:<flat_directory_address>"
-// you can visit it by the following link:
-https://my-dapp.eth.sep.w3link.io/
-```
