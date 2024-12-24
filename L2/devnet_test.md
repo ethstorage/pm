@@ -153,15 +153,7 @@ cast call 0x4200000000000000000000000000000000000800 "balanceOf(address)" $ADDR1
 
 # Test FP
 
-Submit an SGT tx and wait if the tx (and the block) is not reverted.
-
-```bash
-cd $OP_HOME
-cp .devnet/rollup.json op-program/chainconfig/configs/901-rollup.json
-cp .devnet/genesis-l2.json op-program/chainconfig/configs/901-genesis-l2.json
-  
-make verify-devnet
-```
+See [here](./devnet_fault_proof.md).
 
 # Test L2 BLOB
 
