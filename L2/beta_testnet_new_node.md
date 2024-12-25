@@ -3,7 +3,7 @@
 
 First, prepare [rollup.json](./assets/beta_testnet_rollup.json) and [genesis.json](./assets/beta_testnet_genesis.json).
 
-Then, follow the steps [here](https://docs.optimism.io/builders/chain-operators/tutorials/create-l2-rollup) to build `op-node` and `op-geth`, the only difference is: use the `beta_testnet` branch of both [optimism](https://github.com/ethstorage/optimism/tree/devnet) and [op-geth](https://github.com/ethstorage/op-geth/tree/devnet) instead.
+Then, follow the steps [here](https://docs.optimism.io/builders/chain-operators/tutorials/create-l2-rollup) to build `op-node` and `op-geth`, the only difference is: use the `beta_testnet` branch of both [optimism](https://github.com/ethstorage/optimism/tree/beta_testnet) and [op-geth](https://github.com/ethstorage/op-geth/tree/beta_testnet) instead.
 
 Finally, setup `op-node` and `op-geth` following the steps below:
 
