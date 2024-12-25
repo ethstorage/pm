@@ -12,7 +12,7 @@ Finally, setup `op-node` and `op-geth` following the steps below:
 
 cd op-geth
 
-build/bin/geth init --datadir=datadir genesis.json
+./build/bin/geth init --datadir=datadir --state.scheme hash genesis.json
 
 openssl rand -hex 32 > jwt.txt
 
