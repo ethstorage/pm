@@ -1,5 +1,5 @@
 
-# Steps To Setup A New Node For Devnet
+# Steps To Setup A New Node For Beta Testnet
 
 First, prepare [rollup.json](./assets/beta_testnet_rollup.json) and [genesis.json](./assets/beta_testnet_genesis.json).
 
