@@ -32,16 +32,32 @@ git checkout fp-devnet
 OP_HOME=$(realpath .)
 ```
 
-# Run Devnet
-(Note: the devnet intentionally disables op-proposer and op-challenger)
+# Run Devnet and op-challenger
+(Note: the devnet will also start op-proposer and op-challenger)
 
-```make devnet-up```
+```
+# Because devnet's default gameType is FastGame and it's maxClockDuration is hardcoded to 0, sending attack tx to
+# the dispute game contact would fail. So, we should enforce devnet's faultGameClockExtension to use the config
+# in `packages/contracts-bedrock/deploy-config/devnetL1-template.json`
+sed -i '913s/0/uint64(cfg.faultGameMaxClockDuration())/' packages/contracts-bedrock/scripts/deploy/Deploy.s.sol
+# change the following fields in packages/contracts-bedrock/deploy-config/devnetL1-template.json
+  "faultGameClockExtension": 80,  # must be > 0, all units are second
+  "faultGameMaxClockDuration": 200, # 2 * faultGameClockExtension + preimageOracleChallengePeriod <= faultGameMaxClockDuration
+  "preimageOracleChallengePeriod": 40,
+  "proofMaturityDelaySeconds": 400,  # 2 * disputeGameFinalityDelaySeconds is better
+  "disputeGameFinalityDelaySeconds": 200,  # equal to faultGameMaxClockDuration is better
+  "respectedGameType": 0,  # 0: cannon; 254: fastgame
+# fix docker error
+sed -i "s#ARG KONA_VERSION=none#ARG KONA_VERSION=kona-client-v0.1.0-beta.5#" ops/docker/op-stack-go/Dockerfile
+make devnet-up
+```
+## verify correct gameType is set
+```cast call $OPTIMISM_PORTAL_PROXY "respectedGameType()"```
 
 ## (Optional) Restart a Clean Devnet
 
 ```
-make devnet-down
-make devnet-clean
+make devnet-nuke
 ```
 
 # Deploy Fault Proof with Devnet Absolute Prestate
@@ -88,7 +104,11 @@ echo "Anchor root" $(cast call $ASR 'anchors(uint32)' 0)
 Make sure the prestate and anchor output root are correct.
 
 # Run op-proposer & op-challenger
-
+- build op-proposer and op-challenger (make sure your `just` is latest version):
+```
+make op-proposer && make op-challenger
+```
+- run
 ```
 op-proposer/bin/op-proposer --l1-eth-rpc http://localhost:8545  --rollup-rpc http://localhost:7545 --proposal-interval 60s --poll-interval 1s --num-confirmations 1 --private-key 0x59c6995e998f97a5a0044966f0945389dc9e86dae88c7a8412f4603b6b78690d --game-factory-address $DISPUTE_GAME_FACTORY_PROXY --rpc.port 10545
 
@@ -101,5 +121,7 @@ op-challenger/bin/op-challenger run-trace --l1-eth-rpc http://localhost:8545 --l
 ```
 
 # Do something bad
+## attack with bad claim
+- [simple python script](https://github.com/dajuguan/op-notes/blob/main/play-op-challenger.py)
 ## With wrong prestate hash (or rollup config)
 ## With wrong anchor output root
