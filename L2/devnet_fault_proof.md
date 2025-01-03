@@ -46,9 +46,11 @@ sed -i '913s/0/uint64(cfg.faultGameMaxClockDuration())/' packages/contracts-bedr
   "faultGameClockExtension": 80,  # must be > 0, all units are second
   "faultGameMaxClockDuration": 200, # 2 * faultGameClockExtension + preimageOracleChallengePeriod <= faultGameMaxClockDuration
   "preimageOracleChallengePeriod": 40,
+```
+
 ## verify correct gameType is set
 ```cast call $OPTIMISM_PORTAL_PROXY "respectedGameType()"```
-```
+
 ## (Optional) Restart a Clean Devnet
 
 ```
