@@ -4,8 +4,6 @@ This document provides an overview of the changes made to the configuration and 
 
 More importantly, it also outlines the necessary steps to locally verify code changes, whether from `ethstorage` or an upstream sync. Additionally, for certain tests, commands are provided to resolve any identified issues. 
 
----
-
 ## Changes Made to Downstream
 
 ### Runner 
@@ -23,13 +21,13 @@ The following jobs **still run on Docker containers**, but may be moved to `AX10
 - `cannon-build-test-vectors`
 - `todo-issues`
 
----
+
 
 ### Repo Name Change
 
 The repository name was updated from `develop` to `op-es` in the `packages/contracts-bedrock/scripts/checks/check-semver-diff.sh` file.
 
----
+
 
 ### Tools
 
@@ -45,7 +43,7 @@ The following tools must be manually installed on the runner machine (`AX101`) f
 
 > **Note**: All tools must be installed in `/usr/local/bin`, or their commands will not be found during execution.
 
----
+
 
 ### Environment Variables
 
@@ -56,17 +54,14 @@ The following **Environment Variables** must be set in CircleCI under **Project 
 
 > Archive nodes with a free BlockPI API key should be sufficient for these RPC URLs.
 
----
+
 
 ### Submodules
 
 For repositories configured as submodules (e.g., `da-server`), code can be automatically synced during workflows due to an additional step is added to update submodules.
 
----
 
 ## Local Checks After Syncing With Upstream
-
-
 
 ### Contract Checks and Fixes
 
@@ -78,7 +73,7 @@ cd packages/contracts-bedrock && just pre-pr
 
 The following checks are included:
 
-1. **Gas Snapshot Check (`gas-snapshot-check-no-build`):**  
+**Gas Snapshot Check (`gas-snapshot-check-no-build`):**  
 
    Ensures the gas snapshot is up-to-date. If not, you can update it using:
 
@@ -86,15 +81,15 @@ The following checks are included:
    just gas-snapshot-no-build
    ```
 
-2. **Semgrep Test Validity Check (`semgrep-test-validity-check`):**  
+**Semgrep Test Validity Check (`semgrep-test-validity-check`):**  
 
    Ensures that semgrep tests are properly configured.
 
-3. **Unused Imports Check (`unused-imports-check-no-build`):**  
+**Unused Imports Check (`unused-imports-check-no-build`):**  
 
    Flags unused imports in Solidity contracts.
 
-4. **Snapshots Check (`snapshots-check-no-build`):**  
+**Snapshots Check (`snapshots-check-no-build`):**  
 
    Ensures that all snapshots are up-to-date. To fix, regenerate snapshots:
 
@@ -102,7 +97,7 @@ The following checks are included:
    just snapshots-no-build
    ```
 
-5. **Lint Check (`lint-check`):**  
+**Lint Check (`lint-check`):**  
 
    Ensures contracts are properly linted. If there are lint errors, auto-fix them:
 
@@ -110,7 +105,7 @@ The following checks are included:
    just lint-fix
    ```
 
-6. **Semver Diff Check (`semver-diff-check-no-build`):**  
+**Semver Diff Check (`semver-diff-check-no-build`):**  
 
    Ensures that contracts with modified `semver-lock` also have updated semver versions. To fix:
 
@@ -118,37 +113,49 @@ The following checks are included:
    just semver-lock
    ```
 
-7. **Deploy Config Validation (`validate-deploy-configs`):**  
+**Deploy Config Validation (`validate-deploy-configs`):**  
 
    Ensures that deploy configurations are valid.
 
-8. **Spacer Variable Check (`validate-spacers-no-build`):**  
+**Spacer Variable Check (`validate-spacers-no-build`):**  
 
    Validates that spacer variables are inserted correctly without requiring a build.
 
-9. **Interface Check (`interfaces-check-no-build`):**  
+**Interface Check (`interfaces-check-no-build`):**  
 
    Validates interfaces without requiring a build.
 
-10. **Forge Test Linting (`lint-forge-tests-check-no-build`):**  
+1**Forge Test Linting (`lint-forge-tests-check-no-build`):**  
 
     Validates that Forge test names adhere to the correct format. 
 
 ### Go Tests
 
+#### Step 1: Lint the Go Code
 
-Firstly, check that go code is correctly linted.
+Before proceeding with tests, ensure that your Go code is correctly linted. Run the following command:
 
 ```bash
 make lint-go
 ```
 
-Go tests also requires the contracts to be built:
+If any lint errors are detected, fix them using:
+
+```bash
+make lint-go-fix
+```
+
+#### Step 2: Build Contracts
+
+Go tests require the contracts to be built. Execute the following command:
 
 ```bash
 make build
 ```
-Build other necessary components:
+
+#### Step 3: Build Necessary Components
+
+Next, build other essential components by running these commands in sequence:
 
 ```bash
 cd op-program && make op-program-client && cd ..
@@ -156,39 +163,81 @@ cd cannon && make elf && cd ..
 cd op-e2e && make pre-test && cd ..
 ```
 
-Generate allocs:
+#### Step 4: Generate Allocations
+
+To generate allocations, use:
 
 ```bash
 make devnet-allocs
 ```
 
+#### Step 5: Check Kurtosis Status
 
-Make sure kurtosis is running before go tests:
+Ensure that the Kurtosis engine is running before executing Go tests. Check its status with:
 
 ```bash
 kurtosis engine status
 ```
 
-Run go tests with some environment variables provided:
+#### Step 6: Set Environment Variables
+
+Prepare your environment by setting the necessary variables. You can do this by running:
 
 ```bash
+export ENABLE_KURTOSIS=true
+export OP_E2E_CANNON_ENABLED="false"
+export OP_E2E_SKIP_SLOW_TEST=true
+export OP_E2E_USE_HTTP=true
+export ENABLE_ANVIL=true
+# Set your own RPC URLs below:
+export SEPOLIA_RPC_URL=<YOUR_SEPOLIA_RPC_URL>
+export MAINNET_RPC_URL=<YOUR_MAINNET_RPC_URL>
+```
+
+#### Step 7: Run Go Tests
+
+Now you are ready to execute the Go tests. Use the following command:
+
+```bash
+gotestsum --no-summary=skipped,output \
+   --format=testname \
+   --rerun-fails=2
+```
+
+#### Step 8: Review Test Results
+
+After running the tests, check the results for any issues. A successful result should look like this:
+
+```bash
+DONE 1764 tests, 2 skipped in 173.122s
+```
+
+If there are any failures, make the necessary fixes and rerun the tests.
+
+### All In One Script
+
+```bash
+#!/bin/bash
+
+make lint-go-fix
+
+cd packages/contracts-bedrock && just pre-pr && cd ../..
+
+cd op-program && make op-program-client && cd ..
+cd cannon && make elf && cd ..
+cd op-e2e && make pre-test && cd ..
+
+make devnet-allocs
 
 export ENABLE_KURTOSIS=true
 export OP_E2E_CANNON_ENABLED="false"
 export OP_E2E_SKIP_SLOW_TEST=true
 export OP_E2E_USE_HTTP=true
 export ENABLE_ANVIL=true
-# set the following rpc urls of your own
-# export SEPOLIA_RPC_URL=
-# export MAINNET_RPC_URL=
+export SEPOLIA_RPC_URL=<YOUR_SEPOLIA_RPC_URL>
+export MAINNET_RPC_URL=<YOUR_MAINNET_RPC_URL>
 
 gotestsum --no-summary=skipped,output \
    --format=testname \
    --rerun-fails=2
-```
-
-Now check the result and make fixes if necessary. A success result may look like:
-
-```bash
-DONE 1764 tests, 2 skipped in 173.122s
 ```
