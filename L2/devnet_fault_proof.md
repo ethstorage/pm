@@ -48,9 +48,6 @@ sed -i '913s/0/uint64(cfg.faultGameMaxClockDuration())/' packages/contracts-bedr
   "preimageOracleChallengePeriod": 40,
 ```
 
-## verify correct gameType is set
-```cast call $OPTIMISM_PORTAL_PROXY "respectedGameType()"```
-
 ## (Optional) Restart a Clean Devnet
 
 ```
@@ -90,6 +87,9 @@ DEPLOY_CONFIG_PATH=deploy-config/devnetL1.json DEPLOYMENT_INFILE=deployments/dev
 
 ## Verify Deployments
 ```
+## verify correct gameType(0) is set
+cast call $OPTIMISM_PORTAL_PROXY "respectedGameType()"
+
 json_to_env $OP_HOME/.devnet/addresses.json
 FP_IMPL=$(cast call $DISPUTE_GAME_FACTORY_PROXY 'gameImpls(uint32)' 0 | cut -b 1,2,27-66 )
 echo "Fault Proof Impl" $FP_IMPL
@@ -123,3 +123,9 @@ op-challenger/bin/op-challenger run-trace --l1-eth-rpc http://localhost:8545 --l
 - [simple python script](https://github.com/dajuguan/op-notes/blob/main/play-op-challenger.py)
 ## With wrong prestate hash (or rollup config)
 ## With wrong anchor output root
+op-challenger will throw the following error:
+```
+failed to create job for game 0xd5FeCA89e82973B1eb337A2082C59fB248F8e7d8: failed to validate prestate: failed to validate prestate: output root absolute prestate does not match:
+Provider: 0x9d0979edf7b21a77848048c9377cc077cfa5f8fd035393ede118a77a7db35e8e |
+Contract: 0x000000000000000000000000000000000000000000000000000000000000ffff
+```
