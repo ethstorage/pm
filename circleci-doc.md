@@ -4,9 +4,55 @@ This document provides an overview of the changes made to the configuration and 
 
 More importantly, it also outlines the necessary steps to locally verify code changes, whether from `ethstorage` or an upstream sync. Additionally, for certain tests, commands are provided to resolve any identified issues. 
 
-## Changes Made to Downstream
+## CircleCI Server Environment Setup
 
-### Runner 
+### Software Installations
+
+The following tools must be manually installed on the runner machine (`AX101`) for CircleCI workflows to run properly:
+
+- `python3`
+- `yq`
+- `anvil`
+- `semgrep`
+- `kurtosis`
+- `ripgrep` (`rg`)
+- `golangci-lint`
+
+> **Note**: All tools must be installed in `/usr/local/bin`, or their commands will not be found during execution.
+
+If any dependencies are not installed, please follow the corresponding instructions below to install them.
+
+#### Installing Python3
+
+Most Linux OSs have Python pre-installed. Following [this instruction](https://www.geeksforgeeks.org/download-and-install-python-3-latest-version/) otherwise.
+
+#### Installing yq
+
+```bash
+wget https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64 -O /usr/local/bin/yq && chmod +x /usr/local/bin/yq
+yq -V
+```
+
+#### Installing golangci-lint
+
+```bash
+curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b /usr/local/bin v1.63.3
+
+```
+
+### Environment Variables
+
+The following **Environment Variables** must be set in CircleCI under **Project Settings > Environment Variables** to enable tests that depend on forked testnet/mainnet environments (e.g., archive nodes):
+
+- **`SEPOLIA_RPC_URL`**
+- **`MAINNET_RPC_URL`**
+
+> Archive nodes with a free BlockPI API key should be sufficient for these RPC URLs.
+
+
+### Configuration Updates
+
+#### Jobs
 
 The most time-consuming jobs now run on the new runner machine `AX101` (65.108.230.142), including:
 
@@ -21,47 +67,18 @@ The following jobs **still run on Docker containers**, but may be moved to `AX10
 - `cannon-build-test-vectors`
 - `todo-issues`
 
-
-
-### Repo Name Change
+#### Repo Name
 
 The repository name was updated from `develop` to `op-es` in the `packages/contracts-bedrock/scripts/checks/check-semver-diff.sh` file.
 
-
-
-### Tools
-
-The following tools must be manually installed on the runner machine (`AX101`) for CircleCI workflows to run properly:
-
-- `python3`
-- `yq`
-- `anvil`
-- `semgrep`
-- `kurtosis`
-- `ripgrep` (`rg`)
-- `golangci-lint`
-
-> **Note**: All tools must be installed in `/usr/local/bin`, or their commands will not be found during execution.
-
-
-
-### Environment Variables
-
-The following **Environment Variables** must be set in CircleCI under **Project Settings > Environment Variables** to enable tests that depend on forked testnet/mainnet environments (e.g., archive nodes):
-
-- **`SEPOLIA_RPC_URL`**
-- **`MAINNET_RPC_URL`**
-
-> Archive nodes with a free BlockPI API key should be sufficient for these RPC URLs.
-
-
-
-### Submodules
+#### Submodules
 
 For repositories configured as submodules (e.g., `da-server`), code can be automatically synced during workflows due to an additional step is added to update submodules.
 
 
 ## Local Checks After Syncing With Upstream
+
+Before performing local checks, please ensure that [the software dependencies](#software-installations) are correctly installed on your local machine.
 
 ### Contract Checks and Fixes
 
@@ -125,7 +142,7 @@ The following checks are included:
 
    Validates interfaces without requiring a build.
 
-1**Forge Test Linting (`lint-forge-tests-check-no-build`):**  
+**Forge Test Linting (`lint-forge-tests-check-no-build`):**  
 
     Validates that Forge test names adhere to the correct format. 
 
