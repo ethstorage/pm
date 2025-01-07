@@ -87,10 +87,9 @@ DEPLOY_CONFIG_PATH=deploy-config/devnetL1.json DEPLOYMENT_INFILE=deployments/dev
 
 ## Verify Deployments
 ```
+json_to_env $OP_HOME/.devnet/addresses.json
 ## verify correct gameType(0) is set
 cast call $OPTIMISM_PORTAL_PROXY "respectedGameType()"
-
-json_to_env $OP_HOME/.devnet/addresses.json
 FP_IMPL=$(cast call $DISPUTE_GAME_FACTORY_PROXY 'gameImpls(uint32)' 0 | cut -b 1,2,27-66 )
 echo "Fault Proof Impl" $FP_IMPL
 cast call $FP_IMPL 'absolutePrestate()'
