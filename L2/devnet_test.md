@@ -6,9 +6,20 @@ Helper code
 function json_to_env() {
   for key in $( jq -r 'to_entries|map("\(.key)")|.[]' $1 ); do
     skey=$(echo $key | sed -r 's/([a-z0-9])([A-Z])/\1_\L\2/g' | sed -e 's/\(.*\)/\U\1/')
-    value=$(jq \.$key $1 | tr -d \")
+    value=$(jq -r \.$key $1)
     echo $skey=$value
     export $skey=$value
+  done
+}
+
+function json2_to_env() {
+  for key0 in $( jq -r 'to_entries|map("\(.key)")|.[]' $1 ); do
+    for key in $( jq -r ".$key0|"'to_entries|map("\(.key)")|.[]' $1 ); do
+    skey=$(echo $key | sed -r 's/([a-z0-9])([A-Z])/\1_\L\2/g' | sed -e 's/\(.*\)/\U\1/')
+    value=$(jq -r \.$key0\.$key $1)
+    echo $skey=$value
+    export $skey=$value
+    done
   done
 }
 
@@ -21,7 +32,7 @@ function setup_devnet_prestate() {
 }
 
 function setup_op_geth() {
-	cd $OP_GETH_HOME
+  cd $OP_GETH_HOME
   CGO_ENABLED=0 make geth # build geth without glibc dependency
   cp build/bin/geth $OP_HOME/ops-bedrock
   $OP_HOME/ops-bedrock/geth --version
