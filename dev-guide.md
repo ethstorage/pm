@@ -19,9 +19,11 @@ export MAINNET_RPC_URL=<YOUR_MAINNET_RPC_URL>
 mise run dt
 ```
 
+Basically the above command does all the job needed to do the local tests. If you find any problem or need further explore, please refer to [the step-by-step instruction](#local-checks-and-tests-step-by-step-instructions), which have the same effect but more detailed explainations.
+
 ## Local Checks and Tests: Step-by-Step Instructions
 
-This section provides a step-by-step guide based on the way how programming languages are organized in the repo: **Solidity** and **Go**.
+This section provides a step-by-step guide based on the way how programming languages are organized in the repo: [Solidity](#solidity) and [Go](#go). If you are not the first time to run the tests, a more convinient way to conduct the tests can be found [here](#local-checks-and-tests-run-with-one-command).
 
 ### Environment Check
 Before going forward, check if `mise` is activated in your current prompt:
