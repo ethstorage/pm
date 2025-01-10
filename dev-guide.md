@@ -1,16 +1,18 @@
 ## Developer Guide to Optimism in EthStorage
 
-This document provides instructions for contributing to EthStorage's Optimism Monorepo. It outlines a practical process for running tests locally to verify code changes and ensure successful CircleCI tests.
+This document provides comprehensive instructions for contributing to EthStorage's Optimism Monorepo. It outlines a practical process for running tests locally to verify code changes and ensure successful CircleCI tests.
 
-It is good practice to conduct static checks and tests locally every time before merging code changes into the default branch. 
+### Best Practices
+
+It is advisable to conduct static checks and tests locally before merging any code changes into the default branch.
 
 ## Local Checks and Tests: Run with One Command
 
-This section provides a very convenient way to perform all checks and tests with just one command.
+This section describes a convenient method to perform all checks and tests with a single command.
 
-If you are a first-time contributor to EthStorage's Optimism repository or are not yet using `mise` to manage your software dependencies, please complete [the steps to set up your development environment](#environment-setup).
+If you are a first-time contributor to EthStorage's Optimism repository or are not yet using `mise` for managing software dependencies, please complete [the steps to set up your development environment](#environment-setup).
 
-Now, in the root directory of your Optimism repo, execute this command, with the placeholders replaced with your RPC endpoints prepared in [this step](#prepare-rpc-endpoints).
+In the root directory of your Optimism repo, execute the following command, replacing the placeholders with your [prepared](#prepare-rpc-endpoints) RPC endpoints:
 
 ```bash
 # Set your own RPC URLs below. 
@@ -19,28 +21,27 @@ export MAINNET_RPC_URL=<YOUR_MAINNET_RPC_URL>
 mise run dt
 ```
 
-Basically the above command does all the job needed to do the local tests. If you find any problem or need further explore, please refer to [the step-by-step instruction](#local-checks-and-tests-step-by-step-instructions), which have the same effect but more detailed explainations.
+This command executes all necessary local tests. If you encounter issues or need further exploration, refer to [the step-by-step instruction](#local-checks-and-tests-step-by-step-instructions) for more detailed explanations.
 
 ## Local Checks and Tests: Step-by-Step Instructions
 
-This section provides a step-by-step guide based on the way how programming languages are organized in the repo: [Solidity](#solidity) and [Go](#go). If you are not the first time to run the tests, a more convinient way to conduct the tests can be found [here](#local-checks-and-tests-run-with-one-command).
+This section provides a step-by-step guide based on how programming languages are organized in the repository: [Solidity](#solidity) and [Go](#go). For experienced users, a more convenient testing method can be found [here](#local-checks-and-tests-run-with-one-command).
 
 ### Environment Check
-Before going forward, check if `mise` is activated in your current prompt:
+
+Before proceeding, check if `mise` is activated in your current terminal session:
 
 ```bash
 mise doctor | grep 'activated:'
 ```
 
-In a correct output you should see:
+The expected output should be:
 
 ```bash
 bashactivated: yes
 ```
 
-If the answer is `no`, please check [this step](#activate-mise) is properly executed.
-Sometimes in the senario of IDE, you may need to manually activate `mise` each time after open the terminal according to your shell type:
-
+If the output is `no`, ensure that [this step](#activate-mise) has been executed correctly. In some IDE scenarios, you may need to manually activate `mise` each time you open the terminal based on your shell type:
 
 ```bash
 eval "$(mise activate zsh)" 
@@ -56,7 +57,7 @@ Navigate to the `contracts-bedrock` directory:
 cd packages/contracts-bedrock
 ```
 
-#### Static Checks
+#### Run Static Checks
 
 Run the following command to clean, build, lint, and check all contracts:
 
@@ -64,19 +65,17 @@ Run the following command to clean, build, lint, and check all contracts:
 just pre-pr
 ```
 
-For detailed explanations and possible fixes for certain errors, refer to [this section](#contract-checks-and-fixes-in-detail).
+For detailed explanations and potential fixes for specific errors, refer to [this section](#contract-checks-and-fixes-in-detail).
 
 #### Run Unit Tests
 
-The following command runs contract tests using Forge:
+Execute the following command to run contract tests using Forge:
 
 ```bash
 just test
 ```
 
-You may need to check the result and make necessary fixes if there is any error, and re-running the tests. 
-
-A successful result may look like this:
+Review the results and make necessary fixes if errors occur. A successful output may look like this:
 
 ```bash
 Ran 282 test suites in 396.48s (1890.89s CPU time): 1763 tests passed, 0 failed, 1 skipped (1764 total tests)
@@ -94,22 +93,22 @@ Before proceeding with tests, ensure that your Go code is correctly linted:
 make lint-go
 ```
 
-If any lint errors are detected, attempt to fix them:
+If any lint errors are detected, attempt to fix them with:
 
 ```bash
 make lint-go-fix
 ```
-Note that some errors may need manual fixing.
+Note that some errors may require manual intervention.
 
 #### Build
 
-Go tests require Go components as well as contracts to be built. Execute:
+Go tests require building Go components along with contracts. Execute:
 
 ```bash
 # Builds op-node, op-proposer, op-batcher, and contracts-bedrock
 make build
 
-# Build other essential components
+# Build additional essential components
 cd op-program && make op-program-client && cd ..
 cd cannon && make elf && cd ..
 cd op-e2e && make pre-test && cd ..
@@ -117,7 +116,7 @@ cd op-e2e && make pre-test && cd ..
 
 #### Generate Allocations
 
-Allocations are also required by the following tests. To generate allocations, use:
+Allocations are required for subsequent tests. To generate allocations, use:
 
 ```bash
 make devnet-allocs
@@ -125,7 +124,7 @@ make devnet-allocs
 
 #### Set Environment Variables
 
-Prepare your environment by setting necessary variables like below. Replace the placeholders with the RPC endpoints prepared in [this step](#prepare-rpc-endpoints).
+Prepare your environment by setting necessary variables as follows. Replace placeholders with your RPC endpoints as outlined in [this step](#prepare-rpc-endpoints).
 
 ```bash
 export ENABLE_KURTOSIS=true
@@ -141,7 +140,7 @@ export MAINNET_RPC_URL=<YOUR_MAINNET_RPC_URL>
 
 #### Run Go Tests
 
-Execute the Go tests with:
+Execute Go tests with:
 
 ```bash
 gotestsum --no-summary=skipped,output \
@@ -149,7 +148,7 @@ gotestsum --no-summary=skipped,output \
    --rerun-fails=2
 ```
 
-After the tests have finished, check the console for any errors or failures. A successful result should look like this:
+After completion, check the console for any errors or failures. A successful result should appear as follows:
 
 ```bash
 DONE 8567 tests, 95 skipped in 189.396s
@@ -157,7 +156,7 @@ DONE 8567 tests, 95 skipped in 189.396s
 
 #### Run End-to-End Tests
 
-Run end-to-end tests with:
+To run end-to-end tests, execute:
 
 ```bash
 cd op-e2e
@@ -204,7 +203,7 @@ The `just pre-pr` command includes several checks:
 
 ## Environment Setup
 
-This section will guide you through setting up your local development environment step-by-step for a beginner.
+This section guides you through setting up your local development environment step-by-step for beginners.
 
 ### Clone the Repository
 
@@ -217,19 +216,20 @@ cd optimism
 
 ### Install Software Dependencies
 
-Optimism uses [`mise`](https://mise.jdx.dev/) as a dependency manager to install and maintain various software dependencies necessary for development and testing. 
-Once properly installed, `mise` will provide the correct versions for each tool.
+Optimism uses [`mise`](https://mise.jdx.dev/) as a dependency manager for installing and maintaining various software dependencies necessary for development and testing. Once installed correctly, `mise` will provide appropriate versions for each tool.
 
 1. #### Install the `mise` CLI
-   Execute the following command to install `mise` with the latest version:
+
+   Execute the following command to install `mise`:
    ```bash
    curl https://mise.run | sh
    ```
 
 2. #### Activate mise
-   The `mise activate` command updates your environment variables and PATH every time your prompt is run to ensure you use the correct versions.
    
-   Choose a command to execute based on your shell type:
+   The `mise activate` command updates environment variables and PATH each time your prompt is run:
+   
+   Choose a command based on your shell type:
    ```bash
    # for bash
    echo 'eval "$(~/.local/bin/mise activate bash)"' >> ~/.bashrc
@@ -239,53 +239,54 @@ Once properly installed, `mise` will provide the correct versions for each tool.
    ```
 
 3. #### Verify `mise` Installation
+   
    Check that `mise` is installed correctly:
    ```bash
-   mise --version
-   # Expected output: mise 2025.x.x
+   mise --version 
+   # Expected output: mise 2025.x.x 
    ```
 
 4. #### Trust the `mise.toml` File
-   The `mise.toml` file lists the dependencies that this repository uses:
-   ```bash
-   mise trust mise.toml
+   
+   The `mise.toml` file lists the dependencies used by this repository:
+   ```bash 
+   mise trust mise.toml 
    ```
 
 5. #### Install Dependencies
-   Use `mise` to install the required tools:
-   ```bash
-   mise install
+   
+   Use `mise` to install required tools:
+   ```bash 
+   mise install 
    ```
-   Note: You may see an error message after installation (e.g., `failed to install cargo:svm-rs@0.5.8`). This can be ignored temporarily, as it does not affect subsequent operations.
 
-For more information on `mise` command, please refer to https://mise.jdx.dev/cli/.
+For more information on `mise` commands, please refer to https://mise.jdx.dev/cli/.
 
 ### Check the Environment
-
-Verify that the tools dependent are correctly installed with the required versions:
-```bash
-mise ls
+   
+Verify that all dependent tools are correctly installed with required versions:
+```bash 
+mise ls 
 ```
 
 ### Check Kurtosis Status
-
+   
 Executing Go tests requires that the Kurtosis engine is running. Check its status with:
 
-```bash
-kurtosis engine status
+```bash 
+kurtosis engine status 
 ```
-
 Use the following command to start Kurtosis if it is not running:
 
-```bash
-kurtosis engine start
+```bash 
+kurtosis engine start 
 ```
 
 ### Prepare RPC Endpoints
+   
+You will need access to Sepolia and Mainnet during upcoming Go tests; set RPC endpoints as environment variables as outlined in [this step](#step-5-set-environment-variables). 
 
-You will need access to Sepolia and Mainnet during the upcoming Go tests. Therefore, you should set the RPC endpoints as environment variables as in [this step](#step-5-set-environment-variables). 
-
-Fortunately, RPC URLs with a free BlockPI API key will be sufficient for the tests. If you need assistance, please refer to [this link](https://docs.ethstorage.io/storage-provider-guide/tutorials#applying-for-ethereum-api-endpoints) for detailed instructions.
+RPC URLs with a free BlockPI API key will suffice for testing purposes. For assistance, refer to [this link](https://docs.ethstorage.io/storage-provider-guide/tutorials#applying-for-ethereum-api-endpoints) for detailed instructions.
 
 ## Summary
 
