@@ -1,8 +1,6 @@
 Run Fault Proof on Devnet
 =========================
 
-(TODO: the fault proof runs on an old op version. We should update the doc to the latest op-es).
-
 # Setup Helper Functions
 ```
 function json_to_env() {
@@ -33,31 +31,30 @@ OP_HOME=$(realpath .)
 ```
 
 # Run Devnet and op-challenger
-(Note: the devnet will also start op-proposer and op-challenger)
+(Note: op-proposer and op-challenger are not started on `fp-devnet` branch)
 
+```
+make devnet-up
+```
+In other branches instead of fp-devnet, the following changed are required:
 ```
 # Because devnet's default gameType is FastGame and it's maxClockDuration is hardcoded to 0, sending attack tx to
 # the dispute game contact would fail. So, we should enforce devnet's faultGameClockExtension to use the config
-# in `packages/contracts-bedrock/deploy-config/devnetL1-template.json`
+# (already done in the fp-devnet branch) in `packages/contracts-bedrock/deploy-config/devnetL1-template.json`
 sed -i '913s/0/uint64(cfg.faultGameMaxClockDuration())/' packages/contracts-bedrock/scripts/deploy/Deploy.s.sol
-# change the following fields in packages/contracts-bedrock/deploy-config/devnetL1-template.json
+# (already done in the fp-devnet branch) change the following fields in packages/contracts-bedrock/deploy-config/devnetL1-template.json
   "faultGameClockExtension": 80,  # must be > 0, all units are second
   "faultGameMaxClockDuration": 200, # 2 * faultGameClockExtension + preimageOracleChallengePeriod <= faultGameMaxClockDuration
   "preimageOracleChallengePeriod": 40,
-  "proofMaturityDelaySeconds": 400,  # 2 * disputeGameFinalityDelaySeconds is better
-  "disputeGameFinalityDelaySeconds": 200,  # equal to faultGameMaxClockDuration is better
-  "respectedGameType": 0,  # 0: cannon; 254: fastgame
-# fix docker error
-sed -i "s#ARG KONA_VERSION=none#ARG KONA_VERSION=kona-client-v0.1.0-beta.5#" ops/docker/op-stack-go/Dockerfile
-make devnet-up
 ```
-## verify correct gameType is set
-```cast call $OPTIMISM_PORTAL_PROXY "respectedGameType()"```
 
+> SplitDepth must be large than op-proposal's proposal interval (in seconds)/ 2 (block time) due to op-challenger can only attack blocks between [offset, offset+2^SplitDepth]. If it's too small honest output root will always be attacked so anchor state will never be updated. 
+> MaxGameDepth - SplitDeth must be larger than cannon instructions due to FaultDisputeGame contract's `_verifyExecBisectionRoot` requirement.
 ## (Optional) Restart a Clean Devnet
 
 ```
-make devnet-nuke
+make devnet-down
+make devnet-clean
 ```
 
 # Deploy Fault Proof with Devnet Absolute Prestate
@@ -77,7 +74,7 @@ $ make verify-devnet
 ...
 t=2024-10-15T17:46:52+0000 lvl=info msg="Validating claim" head=0x0a33510461b206f7e178d152809477bdb7336399a5f12d6dd71f7b7de58bf8ca:397 output=0x73b217962cdcdf5b878389222d79ff5c07b0ec8c7749d5bed8ead353836e7faa claim=0x73b217962cdcdf5b878389222d79ff5c07b0ec8c7749d5bed8ead353836e7faa
 ```
-which will output the claim (output root) and its l2 block number
+which will output the claim (output root) and its l2 block number(head=xx:blocknumber)
 
 ## Update Config
 
@@ -87,12 +84,14 @@ Replace the prestate hash / genesis block / genesis output root in `deploy-confi
 
 ```
 export IMPL_SALT=$(openssl rand -hex 32)
-DEPLOY_CONFIG_PATH=deploy-config/devnetL1.json DEPLOYMENT_INFILE=deployments/devnetL1/.deploy forge script scripts/deploy/Deploy.s.sol:Deploy --sig deployFaultProofImplementations --private-key 0x2a871d0798f97d79848a013d4936a73bf4cc922c825d33c1cf7073dff6d409c6 --rpc-url http://localhost:8545
+DEPLOY_CONFIG_PATH=deploy-config/devnetL1.json DEPLOYMENT_INFILE=deployments/devnetL1/.deploy forge script scripts/deploy/Deploy.s.sol:Deploy --sig deployFaultProofImplementations --private-key 0x2a871d0798f97d79848a013d4936a73bf4cc922c825d33c1cf7073dff6d409c6 --rpc-url http://localhost:8545  --broadcast
 ```
 
 ## Verify Deployments
 ```
 json_to_env $OP_HOME/.devnet/addresses.json
+## verify correct gameType(0) is set
+cast call $OPTIMISM_PORTAL_PROXY "respectedGameType()"
 FP_IMPL=$(cast call $DISPUTE_GAME_FACTORY_PROXY 'gameImpls(uint32)' 0 | cut -b 1,2,27-66 )
 echo "Fault Proof Impl" $FP_IMPL
 cast call $FP_IMPL 'absolutePrestate()'
@@ -106,7 +105,7 @@ Make sure the prestate and anchor output root are correct.
 # Run op-proposer & op-challenger
 - build op-proposer and op-challenger (make sure your `just` is latest version):
 ```
-make op-proposer && make op-challenger
+make op-proposer && make op-challenger && make cannon
 ```
 - run
 ```
@@ -125,3 +124,9 @@ op-challenger/bin/op-challenger run-trace --l1-eth-rpc http://localhost:8545 --l
 - [simple python script](https://github.com/dajuguan/op-notes/blob/main/play-op-challenger.py)
 ## With wrong prestate hash (or rollup config)
 ## With wrong anchor output root
+op-challenger will throw the following error:
+```
+failed to create job for game 0xd5FeCA89e82973B1eb337A2082C59fB248F8e7d8: failed to validate prestate: failed to validate prestate: output root absolute prestate does not match:
+Provider: 0x9d0979edf7b21a77848048c9377cc077cfa5f8fd035393ede118a77a7db35e8e |
+Contract: 0x000000000000000000000000000000000000000000000000000000000000ffff
+```
