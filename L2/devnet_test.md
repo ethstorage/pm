@@ -14,8 +14,14 @@ function json_to_env() {
 
 function json2_to_env() {
   for key0 in $( jq -r 'to_entries|map("\(.key)")|.[]' $1 ); do
+    echo $key0;
     for key in $( jq -r ".$key0|"'to_entries|map("\(.key)")|.[]' $1 ); do
     skey=$(echo $key | sed -r 's/([a-z0-9])([A-Z])/\1_\L\2/g' | sed -e 's/\(.*\)/\U\1/')
+    if [[ "$skey" == "PROXY_ADMIN_ADDRESS" && $key0 == "superchainDeployment" ]]; then
+      skey="SUPER_PROXY_ADMIN_ADDRESS"
+    elif [[ "$skey" == "PROXY_ADMIN_ADDRESS" && $key0 == "opChainDeployment" ]]; then
+      skey="OP_PROXY_ADMIN_ADDRESS"
+    fi
     value=$(jq -r \.$key0\.$key $1)
     echo $skey=$value
     export $skey=$value
