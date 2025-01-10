@@ -1,14 +1,13 @@
-## Developer Guide to Optimism in EthStorage
+# Developer Guide to Optimism in EthStorage
 
 This document provides comprehensive instructions for contributing to EthStorage's Optimism Monorepo. It outlines a practical process for running tests locally to verify code changes and ensure successful CircleCI tests.
 
-### Best Practices
+We offer two methods to achieve the same goal:
 
-It is advisable to conduct static checks and tests locally before merging any code changes into the default branch.
+- [A convenient command](#local-checks-and-tests-run-with-one-command) that performs all checks and tests in one step.
+- [Step-by-step instructions](#local-checks-and-tests-step-by-step-instructions), which are especially helpful if you need to debug issues or explore further.
 
 ## Local Checks and Tests: Run with One Command
-
-This section describes a convenient method to perform all checks and tests with a single command.
 
 If you are a first-time contributor to EthStorage's Optimism repository or are not yet using `mise` for managing software dependencies, please complete [the steps to set up your development environment](#environment-setup).
 
@@ -21,11 +20,9 @@ export MAINNET_RPC_URL=<YOUR_MAINNET_RPC_URL>
 mise run dt
 ```
 
-This command executes all necessary local tests. If you encounter issues or need further exploration, refer to [the step-by-step instruction](#local-checks-and-tests-step-by-step-instructions) for more detailed explanations.
-
 ## Local Checks and Tests: Step-by-Step Instructions
 
-This section provides a step-by-step guide based on how programming languages are organized in the repository: [Solidity](#solidity) and [Go](#go). For experienced users, a more convenient testing method can be found [here](#local-checks-and-tests-run-with-one-command).
+This section provides a step-by-step guide based on how programming languages are organized in the repository: [Solidity](#solidity) and [Go](#go). 
 
 ### Environment Check
 
@@ -112,14 +109,6 @@ make build
 cd op-program && make op-program-client && cd ..
 cd cannon && make elf && cd ..
 cd op-e2e && make pre-test && cd ..
-```
-
-#### Generate Allocations
-
-Allocations are required for subsequent tests. To generate allocations, use:
-
-```bash
-make devnet-allocs
 ```
 
 #### Set Environment Variables
@@ -260,27 +249,13 @@ Optimism uses [`mise`](https://mise.jdx.dev/) as a dependency manager for instal
    mise install 
    ```
 
+6. #### Check the Environment
+   
+   Verify that all dependent tools are correctly installed with required versions:
+   ```bash 
+   mise ls 
+   ```
 For more information on `mise` commands, please refer to https://mise.jdx.dev/cli/.
-
-### Check the Environment
-   
-Verify that all dependent tools are correctly installed with required versions:
-```bash 
-mise ls 
-```
-
-### Check Kurtosis Status
-   
-Executing Go tests requires that the Kurtosis engine is running. Check its status with:
-
-```bash 
-kurtosis engine status 
-```
-Use the following command to start Kurtosis if it is not running:
-
-```bash 
-kurtosis engine start 
-```
 
 ### Prepare RPC Endpoints
    
