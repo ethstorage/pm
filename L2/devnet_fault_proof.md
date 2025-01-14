@@ -48,8 +48,8 @@ sed -i '913s/0/uint64(cfg.faultGameMaxClockDuration())/' packages/contracts-bedr
   "preimageOracleChallengePeriod": 40,
 ```
 
-> SplitDepth must be large than op-proposal's proposal interval (in seconds)/ 2 (block time) due to op-challenger can only attack blocks between [offset, offset+2^SplitDepth]. If it's too small honest output root will always be attacked so anchor state will never be updated. 
-> MaxGameDepth - SplitDeth must be larger than cannon instructions due to FaultDisputeGame contract's `_verifyExecBisectionRoot` requirement.
+> `SplitDepth` must be greater than the `op-proposal`'s proposal interval (in seconds) divided by 2 (block time) because the `op-challenger` can only attack blocks within the range [offset, offset + 2^SplitDepth]. If `SplitDepth` is too small, the honest output root will always be attacked, preventing the anchor state from being updated. Additionally, `MaxGameDepth - SplitDepth` must be greater than the number of cannon instructions to meet the `_verifyExecBisectionRoot` requirement of the FaultDisputeGame contract.
+
 ## (Optional) Restart a Clean Devnet
 
 ```
