@@ -111,6 +111,14 @@ cd cannon && make elf && cd ..
 cd op-e2e && make pre-test && cd ..
 ```
 
+#### Generate Allocations
+
+Allocations are also required by the following tests. To generate allocations, use:
+
+```bash
+make devnet-allocs
+```
+
 #### Set Environment Variables
 
 Prepare your environment by setting necessary variables as follows. Replace placeholders with your RPC endpoints as outlined in [this step](#prepare-rpc-endpoints).
@@ -256,6 +264,20 @@ Optimism uses [`mise`](https://mise.jdx.dev/) as a dependency manager for instal
    mise ls 
    ```
 For more information on `mise` commands, please refer to https://mise.jdx.dev/cli/.
+
+7. #### Install Kurtosis
+
+    ```bash
+    echo "deb [trusted=yes] https://apt.fury.io/kurtosis-tech/ /" | sudo tee /etc/apt/sources.list.d/kurtosis.list
+    sudo apt update
+    sudo apt install kurtosis-cli
+
+    # This command should start the Kurtosis Engine Server. 
+    kurtosis engine start
+
+    # After starting the engine, you can check its status with:
+    kurtosis engine status
+    ```
 
 ### Prepare RPC Endpoints
    
