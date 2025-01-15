@@ -122,6 +122,9 @@ op-challenger/bin/op-challenger run-trace --l1-eth-rpc http://localhost:8545 --l
 # Do something bad
 ## attack with bad claim
 - [simple python script](https://github.com/dajuguan/op-notes/blob/main/play-op-challenger.py)
+  1. Create a game with a false output root for the latest L2 block number.
+  2. Attack with random false claims and wait for the `op-challenger` to counter until reaching `maxGameDepth`.
+  3. Wait for the `op-challenger` to call step when `maxGameDepth` is even.
 ## With wrong prestate hash (or rollup config)
 ## With wrong anchor output root
 op-challenger will throw the following error:
