@@ -37,7 +37,19 @@ yq -V
 curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b /usr/local/bin v1.63.3
 
 ```
-#### TODO: install other dependencies
+####  Installing kurtosis
+
+```
+echo "deb [trusted=yes] https://apt.fury.io/kurtosis-tech/ /" | sudo tee /etc/apt/sources.list.d/kurtosis.list
+sudo apt update
+sudo apt install kurtosis-cli
+
+# This command should start the Kurtosis Engine Server. 
+kurtosis engine start
+
+# After starting the engine, you can check its status with:
+kurtosis engine status
+```
 
 
 ### Environment Variables
