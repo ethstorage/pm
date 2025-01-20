@@ -22,7 +22,7 @@ op-program/chainconfig/configs/3335-rollup.json
 3. Run `make reproducible-prestate` to get correct absolute prestate：`0x035e99fa21a46c0a94b11dadffdac415c4480613f40a46af2b8f7e5c2ee8ded9`
 4. Attributes from the permissioned FDG can be queried like below：
 ```bash
-# cast call 0x4b2215d682208b2a598cb04270f96562f5ab225f 'gameImpls(uint32)(address)' 1 -r $L1_RPC_URL
+# cast call $DISPUTE_GAME_FACTORY_PROXY_ADDRESS 'gameImpls(uint32)(address)' 1 -r $L1_RPC_URL
 0xdE5e5470c67CAEA0A9bd376D6b26511eaB31EaEF
 # cast call 0xdE5e5470c67CAEA0A9bd376D6b26511eaB31EaEF "maxGameDepth()(uint256)" -r $L1_RPC_URL
 73
