@@ -71,7 +71,7 @@ bin/op-challenger --l1-eth-rpc $L1_RPC_URL --l1-beacon $L1_BEACON_URL \
     --cannon-prestate $(realpath ../op-program/bin/prestate.bin.gz) --private-key $GS_CHALLENGER_PRIVATE_KEY \
     --cannon-rollup-config $(realpath ../op-program/chainconfig/configs/3335-rollup.json) \
     --cannon-l2-genesis $(realpath ../op-program/chainconfig/configs/3335-genesis-l2.json) \
-    --game-factory-address $DISPUTE_GAME_FACTORY_PROXY_ADDRESS --trace-type cannon  2>&1 | tee -a challenger.log -i
+    --game-factory-address $DISPUTE_GAME_FACTORY_PROXY_ADDRESS --trace-type cannon --trace-type permissioned  2>&1 | tee -a challenger.log -i
 
 ```
 10. Make sure that `make verify-beta-testnet` under op-program passes.
