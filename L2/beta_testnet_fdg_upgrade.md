@@ -48,11 +48,11 @@ op-deployer/bin/op-deployer bootstrap disputegame --l1-rpc-url $L1_RPC_URL --pri
 ```
 6. Run the command below to update the above FDG to DisputeGameFactory：
 ```bash
-cast send $DISPUTE_GAME_FACTORY_PROXY_ADDRESS "setImplementation(uint32,address)" 0 <DisputeGameImpl> -r $L1_RPC_URL
+cast send $DISPUTE_GAME_FACTORY_PROXY_ADDRESS "setImplementation(uint32,address)" 0 <DisputeGameImpl> -r $L1_RPC_URL --private-key $GS_ADMIN_PRIVATE_KEY
 ```
 7. Run the command below to set portal's `respectedGameType` to permission-less FDG:
 ```bash
-cast send $OPTIMISM_PORTAL_PROXY_ADDRESS "setRespectedGameType(uint32)" 0 -r $L1_RPC_URL
+cast send $OPTIMISM_PORTAL_PROXY_ADDRESS "setRespectedGameType(uint32)" 0 -r $L1_RPC_URL --private-key $GS_ADMIN_PRIVATE_KEY
 ```
 8. Set the game-type of the op-proposer to permission-less FDG：
 ```bash
@@ -65,13 +65,13 @@ cast send $OPTIMISM_PORTAL_PROXY_ADDRESS "setRespectedGameType(uint32)" 0 -r $L1
 ```bash
 cd op-challenger
 mkdir datadir
-bin/op-challenger --l1-eth-rpc $L1_RPC_URL --l1-beacon $L1_BEACON_URL \ 
+bin/op-challenger --l1-eth-rpc $L1_RPC_URL --l1-beacon $L1_BEACON_URL \
     --l2-eth-rpc http://localhost:8545 --rollup-rpc http://localhost:8547 \
-    --datadir ./datadir --cannon-server ../op-program/bin/op-program --cannon-bin ../cannon/bin/cannon \ 
-    --cannon-prestate $(realpath ../op-program/bin/prestate.bin.gz) --private-key $GS_CHALLENGER_PRIVATE_KEY \ 
+    --datadir ./datadir --cannon-server ../op-program/bin/op-program --cannon-bin ../cannon/bin/cannon \
+    --cannon-prestate $(realpath ../op-program/bin/prestate.bin.gz) --private-key $GS_CHALLENGER_PRIVATE_KEY \
     --cannon-rollup-config $(realpath ../op-program/chainconfig/configs/3335-rollup.json) \
-    --cannon-l2-genesis $(realpath ../op-program/chainconfig/configs/3335-genesis-l2.json) \ 
-    --game-factory-address 0x4b2215d682208b2a598cb04270f96562f5ab225f --trace-type cannon
+    --cannon-l2-genesis $(realpath ../op-program/chainconfig/configs/3335-genesis-l2.json) \
+    --game-factory-address $DISPUTE_GAME_FACTORY_PROXY_ADDRESS --trace-type cannon  2>&1 | tee -a challenger.log -i
 
 ```
 10. Make sure that `make verify-beta-testnet` under op-program passes.
