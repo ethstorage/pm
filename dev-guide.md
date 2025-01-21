@@ -46,6 +46,15 @@ eval "$(mise activate zsh)"
 eval "$(mise activate bash)"
 ```
 
+### Semgrep Checks
+
+Runs semgrep tests on the entire monorepo:
+
+```bash
+just semgrep
+just semgrep-test
+```
+
 ### Solidity
 
 Navigate to the `contracts-bedrock` directory:
