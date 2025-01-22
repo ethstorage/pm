@@ -1,13 +1,14 @@
-1. Run an local L1 devnet
+1. Run a Local L1 Devnet
 ```bash
 make devnet-up
 make devnet-down
 docker compose up -d l1 l1-bn l1-vc
 cast chain-id
 ```
-2. Run an L2 op-geth/op-node/batcher/proposer using [opup](https://github.com/zhiqiangxu/private_notes/blob/main/misc/beta_testnet_local_l1.md).
+2. Run L2 Components (op-geth, op-node, batcher, proposer)
+Follow the [opup setup guide](https://github.com/zhiqiangxu/private_notes/blob/main/misc/beta_testnet_local_l1.md).
 
-3. Restart op-node with two more options
+3. Restart op-node with Additional Options
 ```bash
 export OP_NODE_CONDUCTOR_ENABLED=true
 export OP_NODE_CONDUCTOR_RPC=<conductor-rpc-endpoint> # for example http://conductor:8545
@@ -15,9 +16,10 @@ export OP_NODE_CONDUCTOR_RPC=<conductor-rpc-endpoint> # for example http://condu
 
 4. Run op-conductor
 ```bash
-just op-conductor # build
+# Build op-conductor
+just op-conductor
 
-# An example about how to set the options
+# Example configuration
 export OP_CONDUCTOR_CONSENSUS_ADDR=<Your_IP_Address>
 export OP_CONDUCTOR_CONSENSUS_PORT=50050
 export OP_CONDUCTOR_EXECUTION_RPC=http://localhost:8545
@@ -40,16 +42,18 @@ export OP_CONDUCTOR_RPC_PORT=6660
 export OP_CONDUCTOR_PAUSED=false
 export OP_CONDUCTOR_RAFT_BOOTSTRAP=true
 
-./bin/op-conductor # start
+# Start op-conductor
+./bin/op-conductor
 ```
-5. Run [op-conductor-ops](https://github.com/ethereum-optimism/infra/tree/main/op-conductor-ops)
+5. Configure and Run [op-conductor-ops](https://github.com/ethereum-optimism/infra/tree/main/op-conductor-ops)
 ```bash
-# 1 install poetry and run "poetry install" first by following the readme.md
+# Install dependencies. Follow readme.md to install poetry first
+poetry install
 
-# 2
+# Configure op-conductor-ops
 cp example.config.toml config.toml
 
-# 3 config the op-network-N in config.toml
+# Example configuration
 [networks.op-network-N]
 sequencers = [
     "sequencer-0",
@@ -60,21 +64,25 @@ conductor_rpc_url = "http://<sequencer-0-ip-address>:6660"
 node_rpc_url = "http://<sequencer-0-ip-address>:8547"
 voting = true
 
-# 4. Run op-conductor-ops to check the status of the first sequencer
+# Check the status of the first sequencer
 ./op-conductor-ops status op-network-N
 ```
 
-6. Now you have a single HA sequencer which treats itself as the cluster leader!
-
-7. Follow the same process to add 2 more sequencers
- - Run an op-geth and op-node on a seperate machine.
-     - op-node need also to be started as sequencer: OP_NODE_SEQUENCER_ENABLED=true
-     - The sequcener key should be the same as the first sequencer: OP_NODE_P2P_SEQUENCER_KEY
-     - The two conductor options are also needed to be specified: OP_NODE_CONDUCTOR_ENABLED and OP_NODE_CONDUCTOR_RPC
-     - To sync data more quickly with other sequencers, we need to add three options accroding to this [doc](https://github.com/ethstorage/pm/blob/main/L2/beta_testnet_new_node.md)
-         - --p2p.static # other two sequencers' address
-         - --p2p.no-discovery
-         - --p2p.sync.onlyreqtostatic
+6. Add Additional Sequencers
+ - Deploy two sequencers (op-geth and op-node) on separate machines.
+     - Enable sequencer mode for op-node: OP_NODE_SEQUENCER_ENABLED=true
+     - Use the same sequencer key for op-node: OP_NODE_P2P_SEQUENCER_KEY
+     - Add op-node options:
+        ```bash
+        export OP_NODE_CONDUCTOR_ENABLED=true
+        export OP_NODE_CONDUCTOR_RPC=<conductor-rpc-endpoint>
+        ```
+     - To sync data from other sequencers, we need to add three options accroding to this [doc](https://github.com/ethstorage/pm/blob/main/L2/beta_testnet_new_node.md)
+        ```bash
+         --p2p.static # other two sequencers' address
+         --p2p.no-discovery
+         --p2p.sync.onlyreqtostatic
+         ```
   - Wait for the new sequencer to start and get synced up with the rest of the nodes
   - Once the new sequencer is synced up, manually or use automation to add it to the cluster by calling `conductor_addServerAsVoter` json rpc method on the leader sequencer
       - ```bash
@@ -89,9 +97,7 @@ voting = true
             http://127.0.0.1:8547
         ```
 
-8. Once finished, you should have a 3-node HA sequencer cluster.
-
-9. Add the two new sequcencers into the op-conductor-ops toml config, and run op-conductor-ops
+7. Update op-conductor-ops Configuration
 ```bash
 # install poetry and run "poetry install" first
 
@@ -125,8 +131,19 @@ voting = true
 ./op-conductor-ops status op-network-N
 ```
 
-10. Transfer leadership using op-conductor-ops
+10. Transfer Leadership using op-conductor-ops
 ```bash
 ./op-conductor-ops transfer-leader op-network-N <sequencer-id>
 ```
 
+11. Demo:
+ - [Recording](https://meeting.tencent.com/crm/2kkdpwDG32)
+ - [Slides](https://docs.google.com/presentation/d/1x5Dpq67og7q7rHqT9YhA1Bf35QtvrHir0FBvgcuogyA/edit?usp=sharing)
+
+12. Reference:
+ - [op-conductor repo](https://github.com/ethstorage/optimism/tree/op-es/op-conductor)
+ - [op-conductor runbook](https://github.com/ethstorage/optimism/blob/op-es/op-conductor/RUNBOOK.md)
+ - [op-conductor doc](https://docs.optimism.io/builders/chain-operators/tools/op-conductor)
+ - [op-conductor-ops repo](https://github.com/ethereum-optimism/infra/tree/main/op-conductor-ops)
+ - [OP mainnet runbooks](https://oplabs.notion.site/OP-Mainnet-Runbooks-120f153ee1628045b230d5cd3df79f63)
+ - [Discord discusstion](https://discord.com/channels/1244729134312198194/1299101976671420507/1325785755624407100)
