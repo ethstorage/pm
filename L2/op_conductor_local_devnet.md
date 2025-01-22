@@ -6,7 +6,7 @@ docker compose up -d l1 l1-bn l1-vc
 cast chain-id
 ```
 2. Run L2 Components (op-geth, op-node, batcher, proposer)
-Follow the [opup setup guide](https://github.com/zhiqiangxu/private_notes/blob/main/misc/beta_testnet_local_l1.md).
+ - Follow the [opup setup guide](https://github.com/zhiqiangxu/private_notes/blob/main/misc/beta_testnet_local_l1.md).
 
 3. Restart op-node with Additional Options
 ```bash
