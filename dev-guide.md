@@ -65,9 +65,10 @@ cd packages/contracts-bedrock
 
 #### Run Static Checks
 
-Run the following command to clean, build, lint, and check all contracts:
+Run the following commands to lint, clean, build, and check all contracts:
 
 ```bash
+just lint-check
 just pre-pr
 ```
 
