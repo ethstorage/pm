@@ -15,8 +15,8 @@ In the root directory of your Optimism repo, execute the following command, repl
 
 ```bash
 # Set your own RPC URLs below. 
-export SEPOLIA_RPC_URL=<YOUR_SEPOLIA_RPC_URL>
-export MAINNET_RPC_URL=<YOUR_MAINNET_RPC_URL>
+mise set SEPOLIA_RPC_URL=<YOUR_SEPOLIA_RPC_URL>
+mise set MAINNET_RPC_URL=<YOUR_MAINNET_RPC_URL>
 mise run dt
 ```
 
