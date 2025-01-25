@@ -161,17 +161,6 @@ After completion, check the console for any errors or failures. A successful res
 DONE 8567 tests, 95 skipped in 189.396s
 ```
 
-#### Run End-to-End Tests
-
-To run end-to-end tests, execute:
-
-```bash
-cd op-e2e
-make test-actions
-make test-ws
-```
-For detailed information on end-to-end testing, refer to [this README](https://github.com/ethstorage/optimism/blob/op-es/op-e2e/README.md).
-
 ## Contract Checks and Fixes in Detail
 
 The `just pre-pr` command includes several checks:
