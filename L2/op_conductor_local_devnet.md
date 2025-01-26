@@ -84,7 +84,7 @@ voting = true
          --p2p.sync.onlyreqtostatic
          ```
   - Wait for the new sequencer to start and get synced up with the rest of the nodes
-  - Once the new sequencer is synced up, manually or use automation to add it to the cluster by calling `conductor_addServerAsVoter` json rpc method on the leader sequencer
+  - Once the new sequencer is synced up, manually add it to the cluster by calling `conductor_addServerAsVoter` json rpc method on the leader sequencer. You can also use the `update_cluster_membership` command from `op-conductor-ops` to automate this task.
       - ```bash
         curl -X POST -H "Content-Type: application/json" --data \
             '{"jsonrpc":"2.0","method":"conductor_addServerAsVoter","params":[<raft-server-id>, <raft-consensus-addr>, <raft-config-version>],"id":1}'  \
