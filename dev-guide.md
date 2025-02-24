@@ -15,8 +15,8 @@ In the root directory of your Optimism repo, execute the following command, repl
 
 ```bash
 # Set your own RPC URLs below. 
-export SEPOLIA_RPC_URL=<YOUR_SEPOLIA_RPC_URL>
-export MAINNET_RPC_URL=<YOUR_MAINNET_RPC_URL>
+mise set SEPOLIA_RPC_URL=<YOUR_SEPOLIA_RPC_URL>
+mise set MAINNET_RPC_URL=<YOUR_MAINNET_RPC_URL>
 mise run dt
 ```
 
@@ -46,6 +46,15 @@ eval "$(mise activate zsh)"
 eval "$(mise activate bash)"
 ```
 
+### Semgrep Checks
+
+Runs semgrep tests on the entire monorepo:
+
+```bash
+just semgrep
+just semgrep-test
+```
+
 ### Solidity
 
 Navigate to the `contracts-bedrock` directory:
@@ -56,9 +65,10 @@ cd packages/contracts-bedrock
 
 #### Run Static Checks
 
-Run the following command to clean, build, lint, and check all contracts:
+Run the following commands to lint, clean, build, and check all contracts:
 
 ```bash
+just lint-check
 just pre-pr
 ```
 
@@ -150,17 +160,6 @@ After completion, check the console for any errors or failures. A successful res
 ```bash
 DONE 8567 tests, 95 skipped in 189.396s
 ```
-
-#### Run End-to-End Tests
-
-To run end-to-end tests, execute:
-
-```bash
-cd op-e2e
-make test-actions
-make test-ws
-```
-For detailed information on end-to-end testing, refer to [this README](https://github.com/ethstorage/optimism/blob/op-es/op-e2e/README.md).
 
 ## Contract Checks and Fixes in Detail
 
