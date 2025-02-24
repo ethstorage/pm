@@ -87,3 +87,17 @@ The repository name was updated from `develop` to `op-es` in the `packages/contr
 
 For repositories configured as submodules (e.g., `da-server`), code can be automatically synced during workflows due to an additional step is added to update submodules.
 
+```yaml
+  docker-build:
+    ...
+    steps:
+        - checkout
+        - run:
+            command: git submodule update --init
+```
+
+#### Remove `circleci-agent`
+The following changes have been made in `config.yml` to fix `circleci-agent` issue due to the phisical runner used:
+
+1. `circleci-agent step halt` => `exit 0` 
+2. remove `TEST_FILES=$(echo "$TEST_FILES" | circleci tests split --split-by=timings)` to close parallel.
